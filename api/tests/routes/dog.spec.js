@@ -2,7 +2,7 @@
 const { expect } = require('chai');
 const session = require('supertest-session');
 const app = require('../../src/app.js');
-const { Dog, Temperament, conn } = require('../../src/db.js');
+const { Dog, conn } = require('../../src/db.js');
 const { dogs, temperaments } = require ("../array.js");
 
 const agent = session(app);
@@ -33,7 +33,7 @@ describe("Dogs routes", () => {
   });
 });
 
-/*const dog = {
+const dog = {
   name: 'Pug',
 };
 
@@ -49,4 +49,4 @@ describe('Videogame routes', () => {
       agent.get('/dogs').expect(200)
     );
   });
-});*/
+});

@@ -1,4 +1,4 @@
-const router = require("express").Router();
+/*const router = require("express").Router();
 const { Temperament } = require("../db");
 const apiInfo = require("../controllers/getApiInfo");
 
@@ -22,4 +22,4 @@ router.get('/', async (req, res) => {
     return res.status(200).send(allTemperaments);
 })
 
-module.exports = router;
+module.exports = router;*/

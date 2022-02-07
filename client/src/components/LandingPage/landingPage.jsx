@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./landingPage.module.css";
-import back from "./images/back.jpg"
+import back from "../images/back.jpg";
 
 
 export const LandingPage = () => {

@@ -1,11 +1,11 @@
 module.exports =  {
     dogs : [{
-    name: 'Limón',
+    name: 'Thanos',
     height: 15, 
     weight: 23,
     lifeSpan: 15,
     }, {
-        name: 'Mandarina',
+        name: 'Thor',
         height: 13, 
         weight: 20,
         lifeSpan: 15,

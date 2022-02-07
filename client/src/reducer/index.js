@@ -12,9 +12,9 @@ import {
 
 
 const initialState = {
-    dogs = [],
-    backupDogs = [],
-    temperaments = [],
+    dogs: [],
+    backupDogs: [],
+    temperaments: [],
     detail: []
 };
 
@@ -55,8 +55,8 @@ function rootReducer (state = initialState, action) {
             };
         case FILTER_CREATED:
             let backup = state.backupDogs;
-            let createdFilter = action.payload === "CREATED" ? backup.filter ((e) => el.createdInDb)
-            : backup.filter ((e) => !el.createdInDb);
+            let createdFilter = action.payload === "CREATED" ? backup.filter ((e) => e.createdInDb)
+            : backup.filter ((e) => !e.createdInDb);
             return {
                 ...state,
                 dogs: action.payload === "ALL" ? state.backupDogs : createdFilter

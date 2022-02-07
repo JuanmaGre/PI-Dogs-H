@@ -14,7 +14,7 @@ import {
 
 export function getDogs () {
     return async function (dispatch) {
-        let json = await axios.get("http://localhost:3001/dogs", {} );
+        var json = await axios.get("http://localhost:3001/dogs", {} );
         return dispatch ({
             type: GET_DOGS,
             payload: json.data
@@ -42,7 +42,7 @@ export function getDetail (id) {
     }
 };
 
-export function searchByName () {
+export const searchByName = (name) => {
     return (dispatch) => {
         axios.get(`http://localhost:3001/dogs?name=${name}`)
         .then ((data) => {
@@ -78,30 +78,30 @@ export const addDog = ({
     }
 };
 
-export function filterByValue () {
+export function filterByValue (payload) {
     return {
         type: FILTER_BY_VALUE,
-        payload
+        payload,
     }
 };
 
-export function filterCreated () {
+export function filterCreated (payload) {
     return {
         type: FILTER_CREATED,
-        payload
+        payload,
     }
 };
 
-export function filterTemperament () {
+export function filterByTemperament (payload) {
     return {
         type: FILTER_TEMPERAMENT,
-        payload
+        payload,
     }
 };
 
-export function cleanQ () {
+export function cleanD (payload) {
     return {
         type: CLEAN_D,
-        payload
+        payload,
     }
 };

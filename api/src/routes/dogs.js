@@ -1,4 +1,4 @@
-const router = require("express").Router();
+/*const router = require("express").Router();
 const { Dog } = require("../db");
 const getAllDogs = require("../controllers/getAllDogs");
 
@@ -57,4 +57,4 @@ router.post("/", async (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = router;*/

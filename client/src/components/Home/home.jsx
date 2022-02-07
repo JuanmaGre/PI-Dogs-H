@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { card } from "../Card/card";
-import { nav } from "../Nav/nav";
-import paginado from "../Paginado/paginado.jsx";
+import { Card } from "../../components/Card/card";
+import { Nav } from "../../components/Nav/nav";
+import Paginado from "../../components/Paginado/paginado.module.css";
 import {
     getAllDogs,
     filterByValue,
@@ -16,7 +16,7 @@ import {
 import s from "./home.module.css";
 
 
-export const home = () => {
+export const Home = () => {
     const dispatch = useDispatch();
     const allDogs = useSelector((state) => state.dogs);
     const temperaments = useSelector((state) => state.temperaments);
@@ -38,17 +38,17 @@ export const home = () => {
     }, [dispatch]);
 
 
-    function handleClick(el) {
-        el.preventDefault();
+    function handleClick(e) {
+        e.preventDefault();
         dispatch(getDogs());
         setCurrentPage(1);
     }
 
-    function handleFilterValue(el) {
-        el.preventDefault();
-        dispatch(filterByValue(el.target.value));
+    function handleFilterValue(e) {
+        e.preventDefault();
+        dispatch(filterByValue(e.target.value));
         setCurrentPage(1);
-        setOrden(`Ordenado $(el.target.value)`);
+        setOrden(`Ordenado $(e.target.value)`);
     }
 
     const handleFilterTemperament = (e) => {
@@ -64,11 +64,11 @@ export const home = () => {
         return (
             <div className = {s.containerPhader}>
                 <div>
-                    <nav />
+                    <Nav />
                 </div>
-                <button onClick={(e) => {handleClick(el);}}> Reload List </button>
+                <button onClick={(e) => {handleClick(e);}}> Reload List </button>
                 <div className = {s.variosSele}>
-                    <select className = {s.sele} onChange = {(e) => handleFilterValue(el)}>
+                    <select className = {s.sele} onChange = {(e) => handleFilterValue(e)}>
                         <option value = "A-Z"> Order A-Z </option>
                         <option value = "Z-A"> Order Z-A </option>
                         <option value = "LESS"> Order LESS weight </option>
@@ -92,18 +92,18 @@ export const home = () => {
                 <paginado
                 dogsXPage = {dogsXPage}
                 allDogs = {allDogs.length}
-                paginado = {paginado}/>
+                paginado = {paginado} />
                 
                 <div className = {s.containerCards}>
-                    {currentDogs && currentDogs.map((e) => {
+                    {currentDogs && currentDogs.map((el) => {
                         return (
-                            <Link to = {"/dogs/" + e.id}>
+                            <Link to = {"/dogs/" + el.id}>
                                 <card
-                                name = {e.name}
-                                img = {e.img ? e.img : e.image}
-                                temperament = {e.temperament}
-                                temperaments = {e.temperaments}
-                                id = {e.id}
+                                name = {el.name}
+                                img = {el.img ? el.img : el.image}
+                                temperament = {el.temperament}
+                                temperaments = {el.temperaments}
+                                id = {el.id}
                                 classname = {s.cardiana} />
                             </Link>
                         );

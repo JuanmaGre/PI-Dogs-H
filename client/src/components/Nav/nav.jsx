@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { searchBar } from ".searchBar";
+import { SearchBar } from "../SearchBar/searchBar";
 
-import style from ".nav.module.css";
+import style from "../Nav/nav.module.css";
 
 
-export const nav = () => {
+export const Nav = () => {
     return (
         <div classname = {style.nav}>
             <div className = {style.contenedor}>
@@ -24,4 +24,4 @@ export const nav = () => {
 };
 
 
-export default nav;
+export default Nav;
