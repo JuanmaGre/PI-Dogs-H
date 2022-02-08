@@ -11,8 +11,7 @@ import {
     filterByTemperament,
     filterCreated,
     getTemperaments,
-    getDogs
-} from "../../action";
+} from "../../action/index";
 import s from "../Home/home.module.css";
 
 
