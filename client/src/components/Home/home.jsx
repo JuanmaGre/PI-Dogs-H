@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Card } from "../../components/Card/card";
 import { Nav } from "../../components/Nav/nav";
-import Paginado from "../../components/Paginado/paginado.module.css";
+import Paginado from "../../components/Paginado/paginado";
 import {
-    getAllDogs,
+    getDogs,
     filterByValue,
     filterByTemperament,
     filterCreated,
     getTemperaments,
     getDogs
 } from "../../action";
-import s from "./home.module.css";
+import s from "../Home/home.module.css";
 
 
 export const Home = () => {
@@ -66,7 +66,7 @@ export const Home = () => {
                 <div>
                     <Nav />
                 </div>
-                <button onClick={(e) => {handleClick(e);}}> Reload List </button>
+                <button onClick = {(e) => {handleClick(e);}}> Reload List </button>
                 <div className = {s.variosSele}>
                     <select className = {s.sele} onChange = {(e) => handleFilterValue(e)}>
                         <option value = "A-Z"> Order A-Z </option>
@@ -89,7 +89,7 @@ export const Home = () => {
                     </select>
                 </div>
 
-                <paginado
+                <Paginado
                 dogsXPage = {dogsXPage}
                 allDogs = {allDogs.length}
                 paginado = {paginado} />
@@ -98,7 +98,7 @@ export const Home = () => {
                     {currentDogs && currentDogs.map((el) => {
                         return (
                             <Link to = {"/dogs/" + el.id}>
-                                <card
+                                <Card
                                 name = {el.name}
                                 img = {el.img ? el.img : el.image}
                                 temperament = {el.temperament}

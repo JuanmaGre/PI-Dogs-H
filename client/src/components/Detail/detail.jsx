@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail, cleanD } from "../../action/index";
-import { nav } from "../Nav/nav";
+import { Nav } from "../Nav/nav";
 import s from "../Detail/detail.module.css";
 import { Link } from "react-router-dom";
 import caniches from "../images/caniches.jpg"
@@ -18,7 +18,7 @@ export const Detail = (props) => {
     const detail = useSelector((state) => state.detail);
     return (
     <>
-      <nav />
+      <Nav />
       <div className = {s.container}>
         {detail.length > 0 ? (
             <div className = {s.container__card}>

@@ -16,7 +16,7 @@ export const Nav = () => {
                     <h2 className = {style.create}> Create Dog </h2>
                 </Link>
             <div className = {style.search}>
-                <searchBar />
+                <SearchBar />
             </div>
             </div>
         </div>
