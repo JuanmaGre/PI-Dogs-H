@@ -15,9 +15,9 @@ export default function DogCreate() {
     let breeds = [];
     if (dogs) {
         breeds = dogs.map((dog) => dog.breeds.find((breed) => breed)
-    );
-    breeds = Array.from(new Set(breeds.map((e) => e)));
-};
+        );
+        breeds = Array.from(new Set(breeds.map((e) => e)));
+    };
 
 
     const [input, setInput] = useState ({
@@ -87,12 +87,15 @@ export default function DogCreate() {
     }, [dispatch]);
     return (
         <div className = {style.general}>
-            <Link to "/home" className = {style.backToHomeDiv}>
+            
+            <Link to = "/home" className = {style.backToHomeDiv}>
                 <button className = {style.backToHomeButton}> Back To Home </button>
             </Link>
+        
         <div className = {style.transparentForm}>
             <h1 className = {style.title}> Create your own dog! </h1>
             <form className = {style.formt} onSubmit = {(e) => handleSubmit(e)}>
+            
             <div className = {style.nameDiv}>
                 <input
                     className = {style.nameInput}
@@ -104,6 +107,7 @@ export default function DogCreate() {
                     required
                 />
             </div>
+            
             <div className = {style.heightDiv}>
                 <input
                     className = {style.heightInput}
@@ -114,6 +118,7 @@ export default function DogCreate() {
                     onChange = {(e) => handleChange(e)}
                 />
             </div>
+            
             <div className = {style.weightDiv}>
                 <input
                     className = {style.weightInput}
@@ -124,6 +129,7 @@ export default function DogCreate() {
                     onChange = {(e) => handleChange(e)}
                 />
             </div>
+            
             <div className = {style.lifeSpanDiv}>
                 <input
                     className = {style.lifeSpanInput}
@@ -139,54 +145,62 @@ export default function DogCreate() {
                     required
                 />
             </div>
+            
             <label className={style.labelTemperaments}> TEMPERAMENTS: </label>
-            <select
-                required
-                className = {style.selectTemperaments}
-                onChange = {(e) => handleSelectTemperaments(e)}
-            >
-                <option key = "empty1">
-                </option>
-                {temperaments.map((temperament) => (
-                <option key = {temperament.id} required value={temperament.name}>
-                    {temperament.name}
-                </option>
-                ))}
-            </select>
+                <select
+                    required
+                    className = {style.selectTemperaments}
+                    onChange = {(e) => handleSelectTemperaments(e)}
+                >
+                    <option key = "empty1">
+                    </option>
+                    {temperaments.map((temperament) => (
+                    <option key = {temperament.id} required value={temperament.name}>
+                        {temperament.name}
+                    </option>
+                    ))}
+                </select>
+                
             <label className = {style.labelBreeds}> BREEDS: </label>
-            <select
-                required
-                className = {style.selectBreeds}
-                onChange = {(e) => handleSelectTBreeds(e)}
-            >
-                <option key = "empty2"> 
-                </option>
-                {breeds.map((breed, index) => (
-                <option key = {index} value = {breed} required>
-                    {breed}
-                </option>
-                ))}
-            </select>
+                <select
+                    required
+                    className = {style.selectBreeds}
+                    onChange = {(e) => handleSelectTBreeds(e)}
+                >
+                    <option key = "empty2"> 
+                    </option>
+                    {breeds.map((breed, index) => (
+                    <option key = {index} value = {breed} required>
+                        {breed}
+                    </option>
+                    ))}
+                </select>
+            
             <button className = {style.buttonDone} type = "submit">
                 DONE
             </button>
+
             </form>
+            
             <div className = {style.divRenderTemperaments}>
-            {input.temperaments.map((e) => (
-            <div>
-            {e + " "}
-                <button
-                    key = "btnXTemperaments"
-                    className = {style.buttonXTemperaments}
-                    onClick = {() => handleDeleteTemperaments(e)}
-                >
-                    x
-                </button>
+                {input.temperaments.map((e) => (
+                
+                <div>
+                {e + " "}
+                    <button
+                        key = "btnXTemperaments"
+                        className = {style.buttonXTemperaments}
+                        onClick = {() => handleDeleteTemperaments(e)}
+                    >
+                        x
+                    </button>
+                </div>
+                ))}
             </div>
-            ))}
-        </div>
+
         <div className={style.divRenderBreeds}>
             {input.breeds.map((e) => (
+            
             <div>
             {e + " "}
                 <button
@@ -197,7 +211,10 @@ export default function DogCreate() {
                     x
                 </button>
             </div>
+
             ))}
         </div>
         </div>
     </div>
+)
+};

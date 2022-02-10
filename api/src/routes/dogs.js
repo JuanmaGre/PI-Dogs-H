@@ -1,85 +1,39 @@
-const router = require("express").Router();
-const { Dog } = require("../db");
-const getAllDogs = require("../controllers/getAllDogs");
+const { Router } = require('express');
+const router = Router();
+const { getApiInfo, getDogsName, getDogsInfo }  = require('../util/requires')
 
-router.get("/", async (req, res) => {
-  try {
-    const { name } = req.query;
-    const allDogs = await getAllDogs();
-    if (name) {
-        const filtered = allDogs.filter((el) =>
-        el.name.toLowerCase().includes(name.toLowerCase())
-    );
-    if (filtered.length) return res.status(200).send(filtered);
-    return res.status(404).send("The dog´s breed has not been found");
+
+
+router.get('/', async(req, res, next) => {
+    try{
+        const { name } = req.query  
+        if (name) {
+          let dogName = await getDogsName(name)
+        if (dogName.length < 1) {
+          return res.status(400).send("The name was not found")
+        }
+          return res.status(200).send(dogName)
+        }
+        let dogNameFound = await getDogsInfo()
+        return res.status(200).send(dogNameFound)
     }
-    return res.status(200).send(allDogs);
-  }
-  catch(err) {
-    console.log(err)
-    return res.status(404).json(err)
-  }
-});
-
-router.get('/?name=""', async (req, res, next) => {
-  try {
-      const name = req.query.name;
-      let allDogs = await getAllDogs();
-      if (name) {
-          let dogName = await allDogs.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
-          dogName.length ?
-              res.status(200).send(dogName) :
-              res.send([{
-                  name: 'Sorry, looks like we don´t have that dog breed',
-                  id: '', temperaments: 'Try using our pupper creator',
-                  image: 'http://olegif.com/gif/293'
-              }]);
-      } else {
-          res.status(200).send(allDogs)
-      }
-  }catch(err){
-      next(err);
-  }
-});
-
-router.get("/:raceId", async (req, res) => {
-  try {
-    const { raceId } = req.params;
-    if (raceId) {
-      const allDogs = await getAllDogs();
-      const filtered = allDogs.filter((elem) => elem.id == id);
-      if (filtered.length > 0) return res.status(200).send(filtered);
-      return res.status(404).send("The ID was not found");
+    catch(err) {
+      return next(err)
     }
-  }
-  catch(err) {
-    console.log(err)
-    return res.status(404).json(err)
-  }
-});
+})
 
-router.post("/", async (req, res) => {
-  try{
-    const { name, height, weight, lifeSpan, createdInDb, temperament } = req.body;
-    if (!name || !height || !weight)
-      return res.status(404).send("The name, height and weight are required");
-    const createdDog = await Dog.create({
-      name,
-      height,
-      weight,
-      lifeSpan,
-      temperament,
-      createdInDb
-    });
-    await createdDog.setTemperaments(temperament);
-    return res.status(200).send("The dog has been successfully created");
-  }
-
-  catch(err){
-    console.log(err)
-    res.status(404).json(err)
-  }
-
-});
+router.get('/:raceid', async (req, res) => {
+    try{
+      const {raceid} = req.params
+      let idFound = await getApiInfo(raceid)
+        if(idFound === {}){
+          return res.status(404).send("The dog´s ID was not found")
+        }
+          return res.status(200).send(idFound) 
+    }
+    catch{
+      return res.status(401).send("Error, try with another parameters")
+    }
+})
 
 module.exports = router;

@@ -11,12 +11,11 @@ export default function Paginado({dogsXPage, allDogs, paginado}) {
     return (
         <nav>
             <div>
-                {   pageNumber?.map(number => (
-                        <button classname = {style.numbers} key = {number} onClick = {() => paginado(number)}>
-                            {number}
-                        </button>
-                    ))
-                }
+                {pageNumber?.map(number => (
+                    <button classname = {style.numbers} key = {number} onClick = {() => paginado(number)}>
+                        {number}
+                    </button>
+                ))}
             </div>
         </nav>
     );
