@@ -42,10 +42,10 @@ router.get('/?name=""', async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:raceId", async (req, res) => {
   try {
-    const { id } = req.params;
-    if (id) {
+    const { raceId } = req.params;
+    if (raceId) {
       const allDogs = await getAllDogs();
       const filtered = allDogs.filter((elem) => elem.id == id);
       if (filtered.length > 0) return res.status(200).send(filtered);

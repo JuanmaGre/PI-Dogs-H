@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { LandingPage } from "./components/LandingPage/landingPage";
 import { Home } from "./components/Home/home";
 import { DogCreate } from "./components/DogCreate/dogCreate";
@@ -11,12 +11,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className = "App">
-        <Routes>
+        <Switch>
           <Route exact path = "/" component = { LandingPage } />
           <Route path = "/home" component = { Home } />
           <Route path = "/dog" component = { DogCreate } />
           <Route path = "/dogs/:id" component = { Detail } />
-        </Routes>
+        </Switch>
       </div>
     </BrowserRouter>
   );

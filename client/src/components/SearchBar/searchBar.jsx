@@ -2,17 +2,17 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchByName } from "../../action";
-import style from '../Nav/nav.module.css';
+import style from '../SearchBar/searchBar.module.css';
 
 
 
-export const SearchBar = () => {
+export default function SearchBar() {
     const dispatch = useDispatch();
-    const [name, setName] = useState("");
+    const [name, setName] = useState('');
 
     function handleInputChange(e) {
         e.preventDefault();
-        setName(e.target.name);
+        setName(e.target.value);
     }
 
     function handleSubmit (e) {
@@ -23,18 +23,21 @@ export const SearchBar = () => {
 
 
     return (
-        <div className = {style.container}>
-            <input
-            className = {style.input}
-            value = {name}
-            type = "text"
-            placeholder = "Search Dog"
-            onChange = {(e) => handleInputChange(e)}
-            />
+        <div className = {style.generalSearch}>
+            <form onSubmit = {handleSubmit} autoComplete = "off">
+                <input
+                    className = {style.searchInput}
+                    type = "text"
+                    name = 'search'
+                    id = 'Search'
+                    value = {name}
+                    placeholder = "Search a Dog"
+                    onChange = {handleInputChange} />
 
-            <button className = {style.btn} type = "submit" onClick = {(e) => handleSubmit(e)}>
-                Search
-            </button>
+                <button className = {style.btn} type = "submit" onClick = {(e) => handleSubmit(e)}>
+                    Search
+                </button>
+            </form>
         </div>
     );
 };

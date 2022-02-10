@@ -1,20 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import images from "../images/perro-triste.jpg";
-import s from "../card.module.css";
+import style from "../card.module.css";
 
 
-export const Card = ({ name, img, temperament, temperaments, id}) => {
+export default function Card({ id, name, image, temperament, temperaments}) {
     return (
-        <div classname = {s.container}>
-            <Link to = {`/dogs/${id}`}>
-                <img src = {img ? img : images} alt = "breed" classname = "s.pict" />
-                <h3 id = {s.name}> {name} </h3>
-                <u> Temperament </u> <br />
-                {temperament ? temperament.map((el) => " " + el + "") :
-                temperaments?.map((el) => el.name + ",")}
-            </Link>
+        <div classname = {style.card}>
+            <img src = {image} alt = "image not found" />
+            <h3> {name} </h3>
+            <div classname = {style.temps}>
+                {temps.map((temperament) => (
+                <span key = {temperament.id}> {temperament.name} </span>
+                ))}
+            </div>
         </div>
     );
 };

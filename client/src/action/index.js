@@ -1,107 +1,104 @@
 import axios from "axios";
-import {
-    GET_DOGS,
-    GET_TEMPERAMENTS,
-    GET_DETAIL,
-    SEARCH_BY_NAME,
-    ADD_DOG,
-    FILTER_BY_VALUE,
-    FILTER_CREATED,
-    FILTER_TEMPERAMENT,
-    CLEAN_D
-} from "./types";
+
 
 
 export function getDogs () {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/dogs", {} );
-        return dispatch ({
-            type: GET_DOGS,
-            payload: json.data
-        });
-    }
+        dispatch ({
+            type: GET_INIT
+        })
+        try {
+            let json = await axios.get("http://localhost:3001/dogs", []);
+            dispatch ({
+                type: "GET_DOGS",
+                payload: json.data
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
 };
 
 export function getTemperaments () {
-    return async (dispatch) => {
-        let json = await axios.get ("http://localhost:3001/temperaments")
-        return dispatch ({
-            type: GET_TEMPERAMENTS,
-            payload: json.data
-        });
+    return async function(dispatch) {
+        try {
+            let info = await axios.get("http://localhost:3001/temperaments");
+            dispatch({
+                type: "GET_TEMPERAMENTS",
+                payload: info.data
+            });
+        } 
+        catch(error) {
+            console.log(error);
+        }
     }
 };
 
 export function getDetail (id) {
-    return async (dispatch) => {
-        const json = await axios.get(`http://localhost:3001/dogs/${id}`);
-        return dispatch ({
-            type: GET_DETAIL,
+    return async function (dispatch) {
+        try {
+            let json = await axios.get("http://localhost:3001/dogs/" + id);
+            dispatch ({
+                type: "GET_DETAIL",
+                payload: json.data
+            })
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+export function resetDetail() {
+    return {
+        type: "RESET_DETAIL"
+    }
+}
+
+export function searchByName(name) {
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: "GET_INIT"
+            })
+            let json = await axios.get("http://localhost:3001/dogs?name=" + name);
+            dispatch ({
+            type: "GET_DOGS_NAME",
             payload: json.data
         });
     }
+        catch (error) {
+        console.log(error);
+        }
+    };
 };
 
-export const searchByName = (name) => {
-    return (dispatch) => {
-        axios.get(`http://localhost:3001/dogs?name=${name}`)
-        .then ((data) => {
-            return dispatch ({
-                type: SEARCH_BY_NAME,
-                payload: data.data
-            })
-        })
+export function postDog(payload) {
+    return async function () {
+        let json = await axios.post("http://localhost:3001/dogs", payload);
+        return json;
     }
 };
 
-export const addDog = ({
-    name,
-    heightMin,
-    heightMax,
-    weightMin,
-    weightMax,
-    yearsMin,
-    yearsMax,
-    temperament
-}) => {
-    return async (dispatch) => {
-        await axios.post("http://localhost:3001/dogs/", {
-            name,
-            height: heightMin + " - " + heightMax,
-            weight: weightMin + " - " + weightMax,
-            lifeSpan: yearsMin + " - " + yearsMax,
-            temperament
-        });
-        dispatch ({
-            type: ADD_DOG
-        });
-    }
-};
-
-export function filterByValue (payload) {
+export function alphabeticalOrder(payload) {
     return {
-        type: FILTER_BY_VALUE,
+        type: "ALPHABETICAL_ORDER",
+        payload,
+    };
+}
+
+export function filterByWeight (payload) {
+    return {
+        type: "FILTER_BY_WEIGHT",
         payload,
     }
 };
 
-export function filterCreated (payload) {
+export function filterByTemperaments (payload) {
     return {
-        type: FILTER_CREATED,
+        type: "FILTER_BY_TEMPERAMENTS",
         payload,
     }
 };
 
-export function filterByTemperament (payload) {
-    return {
-        type: FILTER_TEMPERAMENT,
-        payload,
-    }
-};
-
-export function cleanD (payload) {
-    return {
-        type: CLEAN_D,
-        payload,
-    }
-};

@@ -1,185 +1,203 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addDog, getTemperaments } from "../../action/index";
+import { getDogs, getTemperaments, postDog } from "../../action/index";
 import style from './dogCreate.module.css'
 
 
 
-export const DogCreate = () => {
-    const temperaments = useSelector((state) => state.temperaments);
+export default function DogCreate() {
     const dispatch = useDispatch();
-    const initialState = {
+    const history = useHistory();
+    const temperaments = useSelector((state) => state.temperaments);
+    const dogs = useSelector((state) => state.dogs);
+
+    let breeds = [];
+    if (dogs) {
+        breeds = dogs.map((dog) => dog.breeds.find((breed) => breed)
+    );
+    breeds = Array.from(new Set(breeds.map((e) => e)));
+};
+
+
+    const [input, setInput] = useState ({
         name: "",
-        heightMin: "",
-        heightMax: "",
-        weightMin: "",
-        weightMax: "",
-        yearsMin: "",
-        yearsMax: "",
-        temperament: [],
+        height: "",
+        weight: "",
+        lifeSpan: "",
+        temperaments: [],
+        breeds: []
+    });
+
+
+    function handleChange(e) {
+        setInput({
+            ...input,
+            [e.target.name] : e.target.value
+        });
     };
 
-    const [values, setValues] = useState(initialState);
-    const [namesTemp, setNamesTemp] = useState([]);
-    const [errors, setErrors] = useState(false);
-    const [success, setSuccess] = useState(false);
-
-    const handleChange = (elem) => {
-        elem.preventDefault();
-        setValues((values) => ({
-        ...values,
-        [elem.target.name]: elem.target.value,
-        }));
+    function handleSelectTemperaments(e) {
+        setInput({
+            ...input,
+            temperaments: [...input.temperaments, e.target.value]
+        });
     };
 
-    const handleSelect = (e) => {
-        let index = e.target.selectedIndex;
-        setNamesTemp((names) => [...names, e.target.options[index].text]);
-        setValues((values) => ({
-        ...values,
-        temperament: [...values.temperament, Number(e.target.value)],
-        }));
+    function handleSelectTBreeds(e) {
+        setInput({
+            ...input,
+            breeds: [...input.breeds, e.target.value]
+        });
     };
 
-    const handleSubmit = (e) => {
+    function handleSubmit(e) {
         e.preventDefault();
-        if (values.name && values.heightMin && values.heightMax && values.weightMin && values.weightMax && values.temperament
-        ) {
-        dispatch(addDog(values));
-        setErrors(false);
-        setSuccess(true);
-        setValues(initialState);
-        setNamesTemp([]);
-        } else {
-            setSuccess(false);
-            setErrors(true);
-        }
+        dispatch(postDog(input));
+        alert("Dog succesfully created");
+        setInput({
+            id: "",
+            name: "",
+            height: "",
+            weight: "",
+            lifeSpan: "",
+            temperaments: [],
+            breeds: []
+        });
+        history.push("/home");
+        dispatch(getDogs());
     };
+
+    function handleDeleteTemperaments(e) {
+        setInput({
+            ...input,
+            temperaments: input.temperaments.filter((temperament) => temperament !== e)
+        });
+    };
+
+    function handleDeleteBreeds(e) {
+        setInput({
+            ...input,
+            breeds: input.breeds.filter((breed) => breed !== e)
+        });
+    }
 
     useEffect(() => {
         dispatch(getTemperaments());
     }, [dispatch]);
-
     return (
-        <div className = {style.todo}>
-            <h1> Create your own dog </h1>
-            <form onSubmit = {handleSubmit}>
-            <div>
-                <label> Name: </label>
+        <div className = {style.general}>
+            <Link to "/home" className = {style.backToHomeDiv}>
+                <button className = {style.backToHomeButton}> Back To Home </button>
+            </Link>
+        <div className = {style.transparentForm}>
+            <h1 className = {style.title}> Create your own dog! </h1>
+            <form className = {style.formt} onSubmit = {(e) => handleSubmit(e)}>
+            <div className = {style.nameDiv}>
                 <input
-                type = "text"
-                name = "name"
-                value = {values.name}
-                onChange = {handleChange}
-                autoComplete = "off" />
-                {errors.name && <p className = "error"> {errors.name} </p>}
+                    className = {style.nameInput}
+                    placeholder = "name"
+                    type = "text"
+                    value = {input.name}
+                    name = "name"
+                    onChange = {(e) => handleChange(e)}
+                    required
+                />
             </div>
-            
-            <div>
-                <label> Height min: </label>
+            <div className = {style.heightDiv}>
                 <input
-                type = "text"
-                name = "heightMin"
-                value = {values.heightMin}
-                onChange = {handleChange}
-                autoComplete = "off" />
+                    className = {style.heightInput}
+                    required
+                    type = "Height"
+                    value = {input.height}
+                    name = "height"
+                    onChange = {(e) => handleChange(e)}
+                />
             </div>
-
-            <div>
-                <label> Height max: </label>
+            <div className = {style.weightDiv}>
                 <input
-                type = "text"
-                name = "heightMax"
-                value = {values.heightMax}
-                onChange = {handleChange}
-                autoComplete = "off" />
+                    className = {style.weightInput}
+                    required
+                    type = "Weight"
+                    value = {input.weight}
+                    name = "weight"
+                    onChange = {(e) => handleChange(e)}
+                />
             </div>
-        
-            <div>
-                <label> Weight min: </label>
+            <div className = {style.lifeSpanDiv}>
                 <input
-                type = "text"
-                name = "weightMin"
-                value = {values.weightMin}
-                onChange = {handleChange}
-                autoComplete = "off" />
+                    className = {style.lifeSpanInput}
+                    placeholder = "LifeSpan"
+                    title = "You must enter a number between 1 and 25"
+                    id = "lifeSpan"
+                    type = "number"
+                    value = {input.lifeSpan}
+                    min = "1"
+                    max = "25"
+                    name = "lifeSpan"
+                    onChange = {(e) => handleChange(e)}
+                    required
+                />
             </div>
-
-            <div>
-                <label> Weight max: </label>
-                <input
-                type = "text"
-                name = "weightMax"
-                value = {values.weightMax}
-                onChange = {handleChange}
-                autoComplete = "off" />
-            </div>
-
-            <div>
-                <label> Life Span min: </label>
-                <input
-                type = "text"
-                name = "yearsMin"
-                value = {values.yearsMin}
-                onChange = {handleChange}
-                autoComplete = "off" />
-            </div>
-
-            <div>
-                <label> Life Span max: </label>
-                <input
-                type = "text"
-                name = "yearsMax"
-                value = {values.yearsMax}
-                onChange = {handleChange}
-                autoComplete = "off" />
-            </div>
-
-            <div>
-                <label> Temperaments: </label>
-                <select onChange = {handleSelect}>
-                <option value = "all"> Todos </option>
-                {temperaments?.map((e) => (
-                <option key = {e.id} value = {e.id}>
-                {e.name}
+            <label className={style.labelTemperaments}> TEMPERAMENTS: </label>
+            <select
+                required
+                className = {style.selectTemperaments}
+                onChange = {(e) => handleSelectTemperaments(e)}
+            >
+                <option key = "empty1">
+                </option>
+                {temperaments.map((temperament) => (
+                <option key = {temperament.id} required value={temperament.name}>
+                    {temperament.name}
                 </option>
                 ))}
-                </select>
-                <ul>
-                    <h3> Selected temperaments: </h3>
-                    <div>
-                    {namesTemp?.map((elem, i) => (
-                        <div key = {i}>
-                        <p> {elem} </p>
-                        </div>
-                    ))}
-                    </div>
-                </ul>
-            </div>
-
-        <div className = {style.submiteo}>
-            <button type = "submit"> Create! </button>
-        </div>
-        
-        <div classname = {style.labbel}>
-            <h5> Press Henry Logo for go back </h5>
-        </div>
-
-        <div className = {style.divino}>
-            <Link to="/home">
-                <img
-                src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb6GuaWluMmyLbR8DqY1QuaQBzeuQywdaqys036yFBbfxdrCnPTDlO5X0J9dBGNpzvMPE&usqp=CAU"
-                alt = {'Henrylogo'}
-                width = {100}
-                height = {100}
-                />
-            </Link>
-        </div>
-
+            </select>
+            <label className = {style.labelBreeds}> BREEDS: </label>
+            <select
+                required
+                className = {style.selectBreeds}
+                onChange = {(e) => handleSelectTBreeds(e)}
+            >
+                <option key = "empty2"> 
+                </option>
+                {breeds.map((breed, index) => (
+                <option key = {index} value = {breed} required>
+                    {breed}
+                </option>
+                ))}
+            </select>
+            <button className = {style.buttonDone} type = "submit">
+                DONE
+            </button>
             </form>
-            {success ? <h2> Dog successfully added </h2> : null}
-            {errors ? <h2> Something went wrong! </h2> : null}
+            <div className = {style.divRenderTemperaments}>
+            {input.temperaments.map((e) => (
+            <div>
+            {e + " "}
+                <button
+                    key = "btnXTemperaments"
+                    className = {style.buttonXTemperaments}
+                    onClick = {() => handleDeleteTemperaments(e)}
+                >
+                    x
+                </button>
+            </div>
+            ))}
         </div>
-    );
-};
+        <div className={style.divRenderBreeds}>
+            {input.breeds.map((e) => (
+            <div>
+            {e + " "}
+                <button
+                    key = "btnXBreeds"
+                    className={style.buttonXBreeds}
+                    onClick={() => handleDeleteBreeds(e)}
+                >
+                    x
+                </button>
+            </div>
+            ))}
+        </div>
+        </div>
+    </div>

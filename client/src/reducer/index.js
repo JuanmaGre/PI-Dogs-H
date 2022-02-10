@@ -1,21 +1,11 @@
-import {
-    GET_DOGS,
-    FILTER_BY_VALUE,
-    SEARCH_BY_NAME,
-    FILTER_CREATED,
-    FILTER_TEMPERAMENT,
-    GET_TEMPERAMENTS,
-    GET_DETAIL,
-    ADD_DOG,
-    CLEAN_D
-} from "../action/types";
-
+import { alphabeticalOrder } from "../action/index";
 
 const initialState = {
     dogs: [],
     backupDogs: [],
     temperaments: [],
-    detail: []
+    detail: [],
+    loading: false
 };
 
 function rootReducer (state = initialState, action) {
@@ -25,87 +15,87 @@ function rootReducer (state = initialState, action) {
                 ...state,
                 dogs: action.payload,
                 backupDogs: action.payload,
-            };
-        case ADD_DOG:
-            return {
-                ...state
-            };
-        case CLEAN_D:
-            return {
-                ...state,
-                detail: []
-            };
-        case FILTER_TEMPERAMENT:
-            let allDogs = state.backupDogs;
-            let temperamentsFiltered = action.payload === "all" ? allDogs : allDogs.filter((e => e.temperament.includes (action.payload))
-            );
-            return {
-                ...state,
-                dogs: temperamentsFiltered
+                loading: false
             };
         case GET_TEMPERAMENTS:
             return {
                 ...state,
                 temperaments: action.payload
             };
-        case SEARCH_BY_NAME:
-            return {
-                ...state,
-                dogs: action.payload
-            };
-        case FILTER_CREATED:
-            let backup = state.backupDogs;
-            let createdFilter = action.payload === "CREATED" ? backup.filter ((e) => e.createdInDb)
-            : backup.filter ((e) => !e.createdInDb);
-            return {
-                ...state,
-                dogs: action.payload === "ALL" ? state.backupDogs : createdFilter
-            };
         case GET_DETAIL:
             return {
                 ...state,
                 detail: action.payload
             };
-        case FILTER_BY_VALUE:
-            let info = state.backupDogs;
-            let sortedArray = action.payload === "A-Z" ? info.sort (function (a, b) {
-                if (a.name > b.name) {
-                    return 1;
-                } else if (b.name > a.name) {
-                    return -1;
-                }   return 0;
-            }) : action.payload === "Z-A" ? info.sort (function (a, b) {
-                if (a.name > b.name) {
-                    return -1;
-                } else if (b.name > a.name) {
-                    return 1;
-                }   return 0;
-            }) : action.payload === "HIGH" ? info.sort (function (a , b) {
-                if (Number(a.weight.split("-")[0]) > Number(b.weight.split("-")[0])
-                ) {
-                    return -1;
-                } else if (Number(b.weight.split("-")[0]) > Number(a.weight.split("-")[0])
-                ) {
-                    return 1;
-                }   return 0;
-            }) : info.sort (function (a, b) {
-                if (Number(a.weight.split("-")[0]) > Number(b.weight.split("-")[0])
-                ) {
-                    return 1;
-                } else if (Number(b.weight.split("-")[0]) > Number(a.weight.split("-")[0])
-                ) {
-                    return -1;
-                }
-                    return 0;
-            });
+        case RESET_DETAIL:
+            return {
+                ...state,
+                detail: null
+            };
+        case GET_DOGS_NAME:
+            return {
+                ...state,
+                temperaments: action.payload,
+                loading: false
+            };
+        case POST_DOG:
+            return {
+                ...state,
+            };
+        case ALPHABETICAL_ORDER:
+            let alphaOrder = [...state.backupDogs]
+            switch(action.payload) {
+                case "A - Z":
+                    return {
+                        ...state,
+                        dogs: alphabeticalOrder.sort((a, b) => {
+                            if (a.name > b.name) return 1;
+                            if (b.name > a.name) return -1;
+                            return 0;
+                        })
+                    };
+                case "Z - A":
+                    return {
+                        ...state,
+                        dogs: alphabeticalOrder.sort((a, b) => {
+                            if (a.name > b.name) return -1;
+                            if (b.name > a.name) return 1;
+                            return 0;
+                        })
+                    }
+                case "NONE":
+                    return {
+                        ...state,
+                        dogs: [...state.backupDogs]
+                    }
+                    default:
+                        return {
+                            ...state
+                        }
+                    }
+        case FILTER_BY_TEMPERAMENTS:
+            const allDogs = state.backupDogs;
+            const temperamentsFiltered = action.payload === "ALL" ? allDogs : 
+            allDogs.filter((dog) => dog.temperaments.find((temperament) => {
+                return temperament.name === action.payload;
+            })
+            );
+            return {
+                ...state,
+                temperaments: temperamentsFiltered
+            }
+        case FILTER_BY_WEIGHT:
+            const allDogsBis = state.backupDogs;
+            const filterByWeight = action.payload === "Created" ? allDogsBis.filter((e) => e.createdInDb === true) :
+            allDogsBis.filter((e) => e.createdInDb === false);
             
             return {
                 ...state,
-                dogs: sortedArray
+                dogs: action.payload === "ALL" ? state.backupDogs : filterByWeight
             };
             default:
-                return state;
-    };
+                return state
+    }
 };
 
 
