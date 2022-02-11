@@ -8,7 +8,7 @@
 .title {
     position: relative;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 60px;
+    font-size: 35px;
     color: white;
     text-shadow: 5px 5px 5px black;
     z-index: 2;
@@ -58,7 +58,7 @@
 
 .backToHomeDiv {
     position: relative;
-    right: 550px;
+    right: 200px;
     top: 20px;
 }
 
@@ -71,6 +71,7 @@
     font-weight: 700;
     background-color: rgba(255,0,60,1);
     box-shadow: 5px 5px 5px black;
+    cursor: pointer;
 }
 
 .backToHomeButton:hover {
@@ -91,6 +92,28 @@
     margin-bottom: 10px;
     text-align-last: center;
     box-shadow: inset 2px 2px 5px black;
+}
+
+.breedGroupDiv {
+    position: relative;
+    top: -30px;
+    z-index: 2;
+}
+
+.breedGroupInput{
+    border-radius: 5px;
+    border: none;
+    width: 300px;
+    height: 20px;
+    margin-bottom: 10px;
+    text-align-last: center;
+    box-shadow: inset 2px 2px 5px black;
+}
+
+.error{
+    color: red;
+    font-size: small;
+    margin-top: 0;
 }
 
 .heightDiv {
@@ -161,18 +184,31 @@
     color: white;
     font-weight: bold;
     position: absolute;
-    bottom: 183px;
+    bottom: 175px;
     left: 158px;
     z-index: 2;
 }
 
-.labelBreeds {
-    position: absolute;
-    font-weight: bold;
-    bottom: 183px;
-    left: 295px;
-    color:white;
-    z-index: 2;
+.allTemps{
+    display: inline-block;
+}
+
+.allTemps li{
+    justify-content: center;
+    display: inline;
+}
+
+.temp{
+    font-size: medium;
+    color: #e26647;
+    margin: 10px;
+}
+
+.x{
+    background-color: #ddbea9;
+    border: transparent;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .selecttemperaments {
@@ -192,84 +228,11 @@
     z-index: 2;
 }
 
-.selectBreeds {
-    background-color: rgba(255,0,60,1); 
-    color: white;
-    font-weight: bold;
-    position: relative;
-    bottom: 30px;
-    left: 68px;
-    border-radius: 5px;
-    border: none;
-    width: 90px;
-    height: 20px;
-    margin-bottom: 10px;  
-    text-align-last: center;
-    box-shadow: inset 2px 2px 5px black;
-    z-index: 2;
-}
-
-.divRenderTemperaments {
-    position: relative;
-    bottom: 30px;
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    z-index: 2;
-}
-
-.divRenderBreeds {
-    display: flex;
-    position: relative;
-    bottom: 20px;
-    justify-content: center; 
-    color: white;
-    font-weight: 600;
-    z-index: 2; 
-}
-
-.buttonXTemperaments{
-    position: relative;
-    right: 2px;
-    height: 20px;
-    border-radius: 5px;
-    border-style: none;
-    font-weight: bold;
-    font-size: 15px;
-    color: rgba(255,0,60,1); 
-    background-color: thistle;
-    text-align-last: auto;
-    z-index: 2;
-}
-
-.buttonXBreeds {
-    position: relative;
-    right: 2px;
-    height: 20px;
-    border-radius: 5px;
-    border-style: none;
-    font-weight: bold;
-    font-size: 15px;
-    color: rgba(255,0,60,1); 
-    background-color: thistle;
-    text-align-last: auto;
-    z-index: 2;
-}
-
-.buttonXBreeds:hover {
-    background-color: rgba(216, 191, 216, 0.507);
-}
-
-.buttonXTemperaments:hover {
-    background-color: rgba(216, 191, 216, 0.507);
-}
-
 .buttonDone{
     position: absolute;
     right: 30px;
     bottom: 30px;
-    width: 100px;
+    width: 200px;
     height: 50px;
     padding: 8px;
     border-radius: 20px;
@@ -280,6 +243,7 @@
     background-color: rgba(255,0,60,1);
     box-shadow: 5px 5px 5px black;
     z-index: 2;
+    cursor: pointer;
 }
 
 .buttonDone:hover {

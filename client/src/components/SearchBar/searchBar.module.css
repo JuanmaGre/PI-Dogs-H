@@ -25,8 +25,23 @@
     bottom: 1px;
     color: white;
     font-weight: bold;
-    border: none;
     box-shadow: 3px 3px 3px rgba(0,0,0,1);
     background-color: rgba(255,0,60,1); 
     height: 29px; 
+    cursor: pointer;
+}
+
+.buttonSearch a {
+    font-family: monospace;
+    color: rgb(45, 57, 68);
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: rgba(255,0,60,1);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(110, 178, 199);
+}
+
+.buttonSearch:hover a {
+    background-color: rgba(131, 124, 133, 0.548);
 }

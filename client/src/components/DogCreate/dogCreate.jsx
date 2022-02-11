@@ -1,86 +1,119 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs, getTemperaments, postDog } from "../../action/index";
+import { getTemperaments, postDog } from "../../action/index";
 import style from './dogCreate.module.css'
 
 
 
+function validate(input) {
+    let errors = {};
+    if (!input.name) {
+        errors.name = 'Your breed must have a name';
+    }
+    else if (!input.breedGroup) {
+        errors.breedGroup = 'Breed group is required!!';
+    }
+    else if (!input.heightMin) {
+        errors.heightMin = 'Minimum height is required!!';
+    }
+    else if (!input.heightMax) {
+        errors.heightMax = 'Maximum height is required!!';
+    }
+    else if (!input.weightMin) {
+        errors.weightMin = 'Minimum weight is required!!';
+    }
+    else if (!input.weightMax) {
+        errors.weightMax = 'Maximum weight is required!!';
+    }
+    else if (!input.life_span) {
+        errors.life_span = 'Life span is required!!';
+    }
+    return errors;
+};
+
 export default function DogCreate() {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const location = useLocation();
     const temperaments = useSelector((state) => state.temperaments);
-    const dogs = useSelector((state) => state.dogs);
-
-    let breeds = [];
-    if (dogs) {
-        breeds = dogs.map((dog) => dog.breeds.find((breed) => breed)
-        );
-        breeds = Array.from(new Set(breeds.map((e) => e)));
-    };
-
-
-    const [input, setInput] = useState ({
-        name: "",
-        height: "",
-        weight: "",
-        lifeSpan: "",
+    const breeds = useSelector((state) => state.breeds)
+    
+    const [errors, setErrors] = useState({});
+    const [input, setInput] = useState({
+        name: '',
+        breedGroup: '',
+        heightMin: '',
+        heightMax: '',
+        weightMin: '',
+        weightMax: '',
+        lifeSpan: '',
+        image: '',
         temperaments: [],
-        breeds: []
     });
-
 
     function handleChange(e) {
         setInput({
             ...input,
             [e.target.name] : e.target.value
         });
+        setErrors(validate({
+            ...input,
+            [e.target.name] : e.target.value
+        }));
+        console.log(input)
     };
 
     function handleSelectTemperaments(e) {
-        setInput({
+        if (!input.temperaments.includes(e.target.value)) {
+            setInput({
             ...input,
             temperaments: [...input.temperaments, e.target.value]
         });
+        console.log(input);
+    }
     };
 
-    function handleSelectTBreeds(e) {
-        setInput({
+    function handleSelectBreeds(e) {
+        if (!input.breeds.includes(e.target.value)) {
+            setInput({
             ...input,
             breeds: [...input.breeds, e.target.value]
         });
+        console.log(input);
+    }
     };
 
     function handleSubmit(e) {
         e.preventDefault();
+        console.log(errors);
+        if (!Object.getOwnPropertyName(errors).length && input.name && input.heightMin && input.heightMax &&
+        input.weightMin && input.weightMax && input.lifeSpan && input.temperaments.length) {
         dispatch(postDog(input));
-        alert("Dog succesfully created");
+        alert("Dog succesfully created 👏");
         setInput({
-            id: "",
-            name: "",
-            height: "",
-            weight: "",
-            lifeSpan: "",
+            id: '',
+            name: '',
+            breedGroup: '',
+            heightMin: '',
+            heightMax: '',
+            weightMin: '',
+            weightMax: '',
+            lifeSpan: '',
+            image: '',
             temperaments: [],
-            breeds: []
         });
-        history.push("/home");
-        dispatch(getDogs());
-    };
-
-    function handleDeleteTemperaments(e) {
-        setInput({
-            ...input,
-            temperaments: input.temperaments.filter((temperament) => temperament !== e)
-        });
-    };
-
-    function handleDeleteBreeds(e) {
-        setInput({
-            ...input,
-            breeds: input.breeds.filter((breed) => breed !== e)
-        });
+        location("/home");
+    } else {
+        alert("Dog can´t be created with these data")
     }
+};
+
+    function handleDeleteTemperaments(el) {
+        setInput({
+            ...input,
+            temperaments: input.temperaments.filter((temperament) => temperament !== el)
+        });
+    };
 
     useEffect(() => {
         dispatch(getTemperaments());
@@ -99,121 +132,217 @@ export default function DogCreate() {
             <div className = {style.nameDiv}>
                 <input
                     className = {style.nameInput}
-                    placeholder = "name"
+                    placeholder = "NAME"
                     type = "text"
                     value = {input.name}
                     name = "name"
                     onChange = {(e) => handleChange(e)}
                     required
                 />
+                {errors.name && (
+                    <p className = {style.error}>
+                        <strong>
+                            {errors.name}
+                        </strong>
+                    </p>
+                )}
             </div>
             
+            <div className = {style.breedGroupDiv}>
+                <input
+                    className = {style.breedGroupInput}
+                    placeholder = "BREED GROUP"
+                    type = "text"
+                    value = {input.breedGroup}
+                    name = "breedGroup"
+                    onChange = {(e) => handleChange(e)}
+                    required
+                />
+                {errors.breedGroup && (
+                    <p className = {style.error}>
+                        <strong>
+                            {errors.breedGroup}
+                        </strong>
+                    </p>
+                )}
+            </div>
+
+            <div className = {style.heightDiv}>
+                <input
+                    className = {style.heightInput}
+                    placeholder = "MINIMUM HEIGHT -cm- "
+                    type = "number"
+                    value = {input.height}
+                    name = "min height"
+                    onChange = {(e) => handleChange(e)}
+                    required
+                />
+                {errors.heightMin && (
+                    <p className = {style.error}>
+                        <strong>
+                            {errors.heightMin}
+                        </strong>
+                    </p>
+                )}
+            </div>
+
             <div className = {style.heightDiv}>
                 <input
                     className = {style.heightInput}
                     required
+                    placeholder = "MAXIMUM HEIGHT -cm- "
                     type = "Height"
                     value = {input.height}
-                    name = "height"
+                    name = "max height"
                     onChange = {(e) => handleChange(e)}
                 />
+                {errors.heightMax && (
+                    <p className = {style.error}>
+                        <strong>
+                            {errors.heightMax}
+                        </strong>
+                    </p>
+                )}
             </div>
             
             <div className = {style.weightDiv}>
                 <input
                     className = {style.weightInput}
                     required
+                    placeholder = "MINIMUM WEIGHT -kg- "
                     type = "Weight"
                     value = {input.weight}
-                    name = "weight"
+                    name = "min weight"
                     onChange = {(e) => handleChange(e)}
                 />
+                {errors.weightMin && (
+                    <p className = {style.error}>
+                        <strong>
+                            {errors.weightMin}
+                        </strong>
+                    </p>
+                )}
+            </div>
+
+            <div className = {style.weightDiv}>
+                <input
+                    className = {style.weightInput}
+                    required
+                    placeholder = "MAXIMUM WEIGHT -kg- "
+                    type = "Weight"
+                    value = {input.weight}
+                    name = "min weight"
+                    onChange = {(e) => handleChange(e)}
+                />
+                {errors.weightMax && (
+                    <p className = {style.error}>
+                        <strong> 
+                            {errors.weightMax}
+                        </strong>
+                    </p>
+                )}
             </div>
             
             <div className = {style.lifeSpanDiv}>
                 <input
                     className = {style.lifeSpanInput}
-                    placeholder = "LifeSpan"
-                    title = "You must enter a number between 1 and 25"
+                    placeholder = "EXPECTED LIFE SPAN -years- "
+                    title = "It must be between 1 & 25 years"
                     id = "lifeSpan"
-                    type = "number"
+                    type = ""
                     value = {input.lifeSpan}
                     min = "1"
                     max = "25"
-                    name = "lifeSpan"
+                    name = "expected lifeSpan"
                     onChange = {(e) => handleChange(e)}
                     required
                 />
+                {errors.life_span && (
+                    <p className = {style.error}>
+                        <strong>
+                            {errors.life_span}
+                        </strong>
+                    </p>
+                )}
             </div>
+
+            <div className = {style.imageDiv}>
+                <input
+                    className = {style.imageInput}
+                    type = "file"
+                    name = "file"
+                    accept = "image/*"
+                    multiple 
+                />
+                </div>
             
-            <label className={style.labelTemperaments}> TEMPERAMENTS: </label>
+            <div>
+            <label className={style.labelTemperaments}>
+                TEMPERAMENTS:
+            </label>
                 <select
                     required
                     className = {style.selectTemperaments}
                     onChange = {(e) => handleSelectTemperaments(e)}
                 >
-                    <option key = "empty1">
-                    </option>
-                    {temperaments.map((temperament) => (
-                    <option key = {temperament.id} required value={temperament.name}>
-                        {temperament.name}
-                    </option>
-                    ))}
+                    {temperaments?.sort(function (a, b) {
+                        if (a.name < b.name) return -1;
+                        if (a.name > b.name) return 1;
+                            return 0;
+                    }).map(temperament => {
+                            return (
+                                <option value = {temperament.name} key = {temperament.id}>
+                                    {temperament.name}
+                                </option>
+                            )
+                        })}
                 </select>
-                
-            <label className = {style.labelBreeds}> BREEDS: </label>
+                {input.temperaments.map(el => {
+                        return (
+                            <ul className = {style.allTemps} key = {el}>
+                                <li>
+                                    <p className = {style.temp}>
+                                        <strong>
+                                            {el}
+                                        </strong>
+                                    </p>
+                                    <button onClick = {() => handleDeleteTemperaments(el)} className = {style.x} >
+                                        X
+                                    </button>
+                                </li>
+                            </ul>
+                        )
+                    })}
+            </div>
+            
+            <div>
+            <label className={style.labelBreeds}>
+                BREEDS:
+            </label>
                 <select
                     required
                     className = {style.selectBreeds}
-                    onChange = {(e) => handleSelectTBreeds(e)}
+                    onChange = {(e) => handleSelectBreeds(e)}
                 >
-                    <option key = "empty2"> 
-                    </option>
-                    {breeds.map((breed, index) => (
-                    <option key = {index} value = {breed} required>
-                        {breed}
-                    </option>
-                    ))}
+                    {breeds?.sort(function (a, b) {
+                        if (a.name < b.name) return -1;
+                        if (a.name > b.name) return 1;
+                            return 0;
+                    }).map(breed => {
+                            return (
+                                <option value = {breed.name} key = {breed.id}>
+                                    {breed.name}
+                                </option>
+                            )
+                        })}
                 </select>
+            </div>
             
             <button className = {style.buttonDone} type = "submit">
                 DONE
             </button>
 
             </form>
-            
-            <div className = {style.divRenderTemperaments}>
-                {input.temperaments.map((e) => (
-                
-                <div>
-                {e + " "}
-                    <button
-                        key = "btnXTemperaments"
-                        className = {style.buttonXTemperaments}
-                        onClick = {() => handleDeleteTemperaments(e)}
-                    >
-                        x
-                    </button>
-                </div>
-                ))}
-            </div>
-
-        <div className={style.divRenderBreeds}>
-            {input.breeds.map((e) => (
-            
-            <div>
-            {e + " "}
-                <button
-                    key = "btnXBreeds"
-                    className={style.buttonXBreeds}
-                    onClick={() => handleDeleteBreeds(e)}
-                >
-                    x
-                </button>
-            </div>
-
-            ))}
-        </div>
         </div>
     </div>
 )

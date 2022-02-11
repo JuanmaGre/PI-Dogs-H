@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, resetDetail } from "../../action/index";
+import { getDetail } from "../../action/index";
 import style from "../Detail/detail.module.css";
 import { Link } from "react-router-dom";
 import Loader from '../images/Loader.gif';
@@ -13,56 +13,80 @@ export default function Detail(props) {
     const myDog = useSelector((state) => state.detail);
 
     const id = props.match.params.id;
+
     useEffect (() => {
     dispatch(getDetail(id));
-    return () => dispatch(resetDetail());
     }, [dispatch, id]);
 
     window.scrollTo(0, 0);
     
     return (
       <div classname = {style.container} id = "container">
-        {myDog ? (
+        <Link to = "/home">
+          <button className = {style.button} id = 'home'>
+            Home
+          </button>
+        </Link>
+        <Link to = "/dogs">
+          <button className = {style.button}>
+            Create Dog
+          </button>
+        </Link>
+        {myDog.length > 0 ? (
           <div classname = {style.general}>
             <div classname = {style.title}>
               <h1 classname = {style.titleB}>
                 NAME: {myDog.name}
               </h1>
             </div>
-            
             <div className = {style.onTopImg} src = {myDog.image} alt = "onTopImage.jpg" />
-
-            <div classname = {style.temps}>
-              <h2 classname = {style.tempsWords}>
-                TEMPERAMENTS: {myDog.temperaments.map((temperament) => temperament.name + " ")} 
+            
+            <div className = {style.temps}>
+              <h2 className = {style.tempsWords}>
+                TEMPERAMENTS: 
+              </h2>
+                <ul className = {style.temps}>
+                  {myDog.createdInDb ? myDog.temperaments.map(el => {
+                    return <li key = {el.race_temperament.temperamentId}>
+                      <label>
+                        {el.name}
+                      </label>
+                    </li>
+                  }) : myDog.temperaments ? myDog.temperaments.split(', ').map(el => {
+                    return <li key = {el}>
+                      <label>
+                        {el}
+                      </label>
+                    </li>
+                  }) : '🤷‍♂️ No temperaments founded for this breed 🤷‍♀️'}
+                </ul>
+            </div>
+            
+            <div className = {style.height}>
+              <h2 className = {style.heightWords}>
+                HEIGHT: {myDog.heightMin} - {myDog.heightMax} cm
               </h2>
             </div>
             
-            <div classname = {style.height}>
-              <h2 classname = {style.heightWords}>
-                HEIGHT: {myDog.height.map(height => height + (' '))}
-              </h2>
-            </div>
-            
-            <div classname = {style.weightDiv}>
-              <h3 classname = {style.weightWords}>
-                WEIGHT: {myDog.weight}
+            <div className = {style.weightDiv}>
+              <h3 className = {style.weightWords}>
+                WEIGHT: {myDog.weightMin} - {myDog.weightMax} kg
               </h3>
             </div>
             
-            <div classname = {style.lifeSpan}>
-              <h4 classname = {style.lifeSpanWords}>
-                LIFESPAN: {myDog.lifeSpan}
+            <div className = {style.lifeSpan}>
+              <h4 className = {style.lifeSpanWords}>
+                LIFESPAN: {myDog.life_span}
               </h4>
             </div>
             
             <div>
-              <img classname = {style.backgroundImg} src = {myDog.image} alt = "BackgroundImage.jpg" />
+              <img className = {style.backgroundImg} src = {myDog.image} alt = "BackgroundImage.jpg" />
             </div>
           </div>
         ) : (
-          <div classname = {style.loader}>
-            <div classname = {style.dogChasingTail}> 
+          <div className = {style.loader}>
+            <div className = {style.dogChasingTail}> 
               <img src = {DogChasingTail} alt = "DogChasingTail.gif" />
             </div>
             
@@ -72,9 +96,9 @@ export default function Detail(props) {
           </div>
         )
         }
-            <div classname = {style.goBackDiv}>
+            <div className = {style.goBackDiv}>
               <Link to = "/home">
-                <button classname = {style.goBackButton}> Go Back </button>
+                <button className = {style.goBackButton}> Go Back </button>
               </Link>
             </div>
           </div>

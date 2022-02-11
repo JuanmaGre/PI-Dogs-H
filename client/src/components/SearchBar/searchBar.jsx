@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchByName } from "../../action";
+import { getDogs } from "../../action";
 import style from '../SearchBar/searchBar.module.css';
 
 
@@ -17,7 +17,8 @@ export default function SearchBar() {
 
     function handleSubmit (e) {
         e.preventDefault();
-        dispatch(searchByName(name));
+        let found = getDogs(name);
+        dispatch(found);
         setName(' ');
     }
 
@@ -31,10 +32,10 @@ export default function SearchBar() {
                     name = 'search'
                     id = 'Search'
                     value = {name}
-                    placeholder = "Search a Dog"
+                    placeholder = "Search a Breed"
                     onChange = {handleInputChange} />
 
-                <button className = {style.btn} type = "submit" onClick = {(e) => handleSubmit(e)}>
+                <button className = {style.buttonSearch} type = "submit" onClick = {(e) => handleSubmit(e)}>
                     Search
                 </button>
             </form>

@@ -28,7 +28,7 @@ export default function Home() {
     const isLoading = useSelector((state) => state.loading);
     const [currentPage, setCurrentPage] = useState(1);
     const dogsXPage = 8;
-    const [/*order,*/ setOrder] = useState("");
+    const [setOrder] = useState("");
 
     const indexOfLastDog = currentPage * dogsXPage;
     const indexOfFirstDog = indexOfLastDog - dogsXPage;
@@ -82,12 +82,8 @@ export default function Home() {
             <nav className = {style.nav} />
             <SearchBar />
             <div className = {style.createDog}>
-                <Link key = 'create' to = "/dog"> Create Dog </Link>
+                <Link to = "/dog" key = 'create' > Create Dog </Link>
             </div>
-            <div className = {style.divReset}>
-                <button className = {style.buttonReset} onClick = {e => handleResetsFilters(e)}>
-                    Reset Search
-                </button>
             <div className = {style.filter}>
                 <div className = {style.alphabeticalOrder}>
                     <label className = {style.labels}>
@@ -147,8 +143,13 @@ export default function Home() {
                             Dog Api:
                         </option>
                     </select>
+                <div className = {style.divReset}>
+                    <button className = {style.buttonReset} onClick = {e => handleResetsFilters(e)}>
+                        Reset Search
+                    </button>
                 </div>
-                <Paginado dogsXPage = {dogsXPage} getDogs = {getDogs.length} paginado = {paginado} />
+                
+                <Paginado dogsXPage = {dogsXPage} allDogs = {allDogs.length} paginado = {paginado} />
                 </div>
                 {isLoading ? (
                     <div>
