@@ -36,7 +36,7 @@ export default function DogCreate() {
     const dispatch = useDispatch();
     const location = useLocation();
     const temperaments = useSelector((state) => state.temperaments);
-    const breeds = useSelector((state) => state.breeds)
+    // const breeds = useSelector((state) => state.breeds);
     
     const [errors, setErrors] = useState({});
     const [input, setInput] = useState({
@@ -46,7 +46,7 @@ export default function DogCreate() {
         heightMax: '',
         weightMin: '',
         weightMax: '',
-        lifeSpan: '',
+        life_span: '',
         image: '',
         temperaments: [],
     });
@@ -73,21 +73,21 @@ export default function DogCreate() {
     }
     };
 
-    function handleSelectBreeds(e) {
-        if (!input.breeds.includes(e.target.value)) {
-            setInput({
-            ...input,
-            breeds: [...input.breeds, e.target.value]
-        });
-        console.log(input);
-    }
-    };
+    // function handleSelectBreeds(e) {
+    //     if (!input.breeds.includes(e.target.value)) {
+    //         setInput({
+    //         ...input,
+    //         breeds: [...input.breeds, e.target.value]
+    //     });
+    //     console.log(input);
+    // }
+    // };
 
     function handleSubmit(e) {
         e.preventDefault();
         console.log(errors);
         if (!Object.getOwnPropertyName(errors).length && input.name && input.heightMin && input.heightMax &&
-        input.weightMin && input.weightMax && input.lifeSpan && input.temperaments.length) {
+        input.weightMin && input.weightMax && input.life_span && input.temperaments.length) {
         dispatch(postDog(input));
         alert("Dog succesfully created 👏");
         setInput({
@@ -98,7 +98,7 @@ export default function DogCreate() {
             heightMax: '',
             weightMin: '',
             weightMax: '',
-            lifeSpan: '',
+            life_span: '',
             image: '',
             temperaments: [],
         });
@@ -139,13 +139,13 @@ export default function DogCreate() {
                     onChange = {(e) => handleChange(e)}
                     required
                 />
-                {errors.name && (
+                {/* {errors.name && (
                     <p className = {style.error}>
                         <strong>
                             {errors.name}
                         </strong>
                     </p>
-                )}
+                )} */}
             </div>
             
             <div className = {style.breedGroupDiv}>
@@ -158,32 +158,32 @@ export default function DogCreate() {
                     onChange = {(e) => handleChange(e)}
                     required
                 />
-                {errors.breedGroup && (
+                {/* {errors.breedGroup && (
                     <p className = {style.error}>
                         <strong>
                             {errors.breedGroup}
                         </strong>
                     </p>
-                )}
+                )} */}
             </div>
 
             <div className = {style.heightDiv}>
                 <input
                     className = {style.heightInput}
-                    placeholder = "MINIMUM HEIGHT -cm- "
-                    type = "number"
-                    value = {input.height}
-                    name = "min height"
-                    onChange = {(e) => handleChange(e)}
                     required
+                    placeholder = "MINIMUM HEIGHT -cm- "
+                    type = "text"
+                    value = {input.height}
+                    name = "heightMin"
+                    onChange = {(e) => handleChange(e)}
                 />
-                {errors.heightMin && (
+                {/* {errors.heightMin && (
                     <p className = {style.error}>
                         <strong>
                             {errors.heightMin}
                         </strong>
                     </p>
-                )}
+                )} */}
             </div>
 
             <div className = {style.heightDiv}>
@@ -191,18 +191,18 @@ export default function DogCreate() {
                     className = {style.heightInput}
                     required
                     placeholder = "MAXIMUM HEIGHT -cm- "
-                    type = "Height"
+                    type = "text"
                     value = {input.height}
-                    name = "max height"
+                    name = "heightMax"
                     onChange = {(e) => handleChange(e)}
                 />
-                {errors.heightMax && (
+                {/* {errors.heightMax && (
                     <p className = {style.error}>
                         <strong>
                             {errors.heightMax}
                         </strong>
                     </p>
-                )}
+                )} */}
             </div>
             
             <div className = {style.weightDiv}>
@@ -210,18 +210,18 @@ export default function DogCreate() {
                     className = {style.weightInput}
                     required
                     placeholder = "MINIMUM WEIGHT -kg- "
-                    type = "Weight"
+                    type = "text"
                     value = {input.weight}
-                    name = "min weight"
+                    name = "weightMin"
                     onChange = {(e) => handleChange(e)}
                 />
-                {errors.weightMin && (
+                {/* {errors.weightMin && (
                     <p className = {style.error}>
                         <strong>
                             {errors.weightMin}
                         </strong>
                     </p>
-                )}
+                )} */}
             </div>
 
             <div className = {style.weightDiv}>
@@ -229,41 +229,37 @@ export default function DogCreate() {
                     className = {style.weightInput}
                     required
                     placeholder = "MAXIMUM WEIGHT -kg- "
-                    type = "Weight"
+                    type = "text"
                     value = {input.weight}
-                    name = "min weight"
+                    name = "weightMax"
                     onChange = {(e) => handleChange(e)}
                 />
-                {errors.weightMax && (
+                {/* {errors.weightMax && (
                     <p className = {style.error}>
                         <strong> 
                             {errors.weightMax}
                         </strong>
                     </p>
-                )}
+                )} */}
             </div>
             
             <div className = {style.lifeSpanDiv}>
                 <input
                     className = {style.lifeSpanInput}
-                    placeholder = "EXPECTED LIFE SPAN -years- "
-                    title = "It must be between 1 & 25 years"
-                    id = "lifeSpan"
-                    type = ""
-                    value = {input.lifeSpan}
-                    min = "1"
-                    max = "25"
-                    name = "expected lifeSpan"
-                    onChange = {(e) => handleChange(e)}
                     required
+                    placeholder = "EXPECTED LIFE SPAN -years- "
+                    type = "text"
+                    value = {input.life_span}
+                    name = "life_span"
+                    onChange = {(e) => handleChange(e)}
                 />
-                {errors.life_span && (
+                {/* {errors.life_span && (
                     <p className = {style.error}>
                         <strong>
                             {errors.life_span}
                         </strong>
                     </p>
-                )}
+                )} */}
             </div>
 
             <div className = {style.imageDiv}>
@@ -285,6 +281,7 @@ export default function DogCreate() {
                     className = {style.selectTemperaments}
                     onChange = {(e) => handleSelectTemperaments(e)}
                 >
+                    <option value = 'selected' hidden>Temperaments</option>
                     {temperaments?.sort(function (a, b) {
                         if (a.name < b.name) return -1;
                         if (a.name > b.name) return 1;
@@ -315,7 +312,7 @@ export default function DogCreate() {
                     })}
             </div>
             
-            <div>
+            {/* <div>
             <label className={style.labelBreeds}>
                 BREEDS:
             </label>
@@ -336,7 +333,7 @@ export default function DogCreate() {
                             )
                         })}
                 </select>
-            </div>
+            </div> */}
             
             <button className = {style.buttonDone} type = "submit">
                 DONE

@@ -37,9 +37,11 @@
 
 .divReset{
     position: relative;
+    display: flex;
+    flex-direction: row;
     width: 100px;
     top: 20px;
-    left: 120px;
+    left: 80px;
 }
 
 .buttonReset {
@@ -69,7 +71,7 @@
     background-color: rgba(131, 124, 133, 0.548);
 }
 
-.filter {
+.filters {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -173,12 +175,13 @@
 
 .noResultsDiv h3 {
     position: relative;
-    left: 370px;
+    left: 80px;
     top: 100px;
 }
 
 .sadDogGif {
     position: relative;
-    left: 360px;
+    display: flex;
+    left: 80px;
     top: 100px;
 }

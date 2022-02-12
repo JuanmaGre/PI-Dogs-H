@@ -1,35 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import style from "./card.module.css";
 
 
 
-export default function Card(props) {
 
-    return (
-      <Link to={`/Details/${props.id}`} className = {style.card}>
-        <div>
-          <div className = {style.bodyCard}>
-            { props.image ?
-            <img src = {props.image} className = {style.imgs} alt = "" />:
-            <img src='https://pbs.twimg.com/media/EPzN-oYXkAA_H_e?format=jpg&name=small' className = {style.imgs} alt = "" />
+export default function Card({ image, name, temperaments, weightMin, weightMax }) {
+  return (
+      <div className = {style.card} >
+          <h1 className = {style.names}> {name} </h1>
+          <h3 className = {style.temps}>
+            {function (temperaments) {
+              if (typeof (temperaments) === 'string') {
+                  return temperaments;
+              }
+              if (Array.isArray(temperaments)) {
+                  let temps = temperaments.map(el => el.name);
+                  return temps.join(', ');
+              }
+            }(temperaments)}
+          </h3>
+          <img src = {image} alt = {`${name}`} width='300px' heigth='200px' className = {style.bodyCard}/>
+          {
+              name !== 'Sorry, looks like we don´t have that dog breed' ?
+              <h3 className = {style.temps}>Weight: {weightMax} - {weightMin} kg</h3> :
+              <></>
           }
-          </div>
-  
-          <h4 className={style.names}>{props.name}</h4>
-          <p className={style.temps}>
-            { props.temperament
-              ? typeof props.temperament[0] === "object"
-                ? props.temperament.map((e) => {
-                    return e.name + " ";
-                  })
-                : props.temperament.map((e) => {
-                    return e + " ";
-                  })
-              : "Not fount"}
-          </p>
-        </div>
-      </Link>
-    );
-  }
-
+      </div>
+  )
+}

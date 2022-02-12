@@ -84,7 +84,7 @@ export default function Home() {
             <div className = {style.createDog}>
                 <Link to = "/dog" key = 'create' > Create Dog </Link>
             </div>
-            <div className = {style.filter}>
+            <div className = {style.filters}>
                 <div className = {style.alphabeticalOrder}>
                     <label className = {style.labels}>
                         Order:
@@ -182,7 +182,7 @@ export default function Home() {
                                 </div>
                             <div className = {style.noResultsDiv}>
                                 <h3>
-                                    NO RESOULTS FOUND!
+                                    NO RESULTS FOUND!
                                 </h3>
                             </div>
                             </div>

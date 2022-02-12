@@ -12,13 +12,13 @@
     position: absolute;
     top: 315px;
     left: 540px;
-    width: 130px;
+    width: 200px;
     letter-spacing: 2px;
     font-size: 22px;
     font-family: monospace;
     font-weight: 700;
     text-decoration-line: none;
-    background-color: rgb(255, 0, 60);
+    background-color: rgb(90, 172, 103);
     color: rgb(255, 235, 235);
     border-color: transparent;
     transition: 0.3s;
@@ -26,8 +26,8 @@
 }
 
 .buttonStart:hover {
-    background-color: rgb(255, 0, 60);
-    box-shadow: 0 0 3px rgb(255, 0, 60), 0 0 6px rgb(255, 0, 60),
-    0 0 15px rgb(255, 0, 60), 0 0 30px rgb(255, 0, 60);
+    background-color: rgb(88, 153, 179);
+    box-shadow: 0 0 3px rgb(88, 153, 179), 0 0 6px rgb(88, 153, 179),
+    0 0 15px rgb(88, 153, 179), 0 0 30px rgb(88, 153, 179);;
     cursor: pointer;
 }
