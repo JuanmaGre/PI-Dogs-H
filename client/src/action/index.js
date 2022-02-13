@@ -8,7 +8,6 @@ export const RESET_DETAIL = 'RESET_DETAIL';
 export const GET_DOGS_NAME = 'GET_DOGS_NAME';
 export const POST_DOG = 'POST_DOG';
 export const ALPHABETICAL_ORDER = 'ALPHABETICAL_ORDER';
-export const ORDER_BY_HEIGHT = 'ORDER_BY_HEIGHT';
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT';
 export const FILTER_BY_TEMPERAMENTS = 'FILTER_BY_TEMPERAMENTS';
 export const FILTER_BY_BREEDS = 'FILTER_BY_BREEDS';
@@ -43,7 +42,7 @@ export function getDogs (name) {
 export function getTemperaments () {
     return async function(dispatch) {
         try {
-            let info = await axios.get("http://localhost:3001/temperaments");
+            let info = await axios.get("http://localhost:3001/temperament");
             dispatch({
                 type: "GET_TEMPERAMENTS",
                 payload: info.data
@@ -89,13 +88,6 @@ export function alphabeticalOrder(payload) {
         payload,
     };
 }
-
-export function orderByHeight (payload) {
-    return {
-        type: "ORDER_BY_HEIGHT",
-        payload,
-    }
-};
 
 export function orderByWeight (payload) {
     return {

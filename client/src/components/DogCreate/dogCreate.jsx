@@ -36,12 +36,11 @@ export default function DogCreate() {
     const dispatch = useDispatch();
     const location = useLocation();
     const temperaments = useSelector((state) => state.temperaments);
-    // const breeds = useSelector((state) => state.breeds);
     
     const [errors, setErrors] = useState({});
     const [input, setInput] = useState({
         name: '',
-        breedGroup: '',
+        breed_group: '',
         heightMin: '',
         heightMax: '',
         weightMin: '',
@@ -93,7 +92,7 @@ export default function DogCreate() {
         setInput({
             id: '',
             name: '',
-            breedGroup: '',
+            breed_group: '',
             heightMin: '',
             heightMax: '',
             weightMin: '',
@@ -126,7 +125,7 @@ export default function DogCreate() {
             </Link>
         
         <div className = {style.transparentForm}>
-            <h1 className = {style.title}> Create your own dog! </h1>
+            <h1 className = {style.title}> Create your dog! </h1>
             <form className = {style.formt} onSubmit = {(e) => handleSubmit(e)}>
             
             <div className = {style.nameDiv}>
@@ -153,8 +152,8 @@ export default function DogCreate() {
                     className = {style.breedGroupInput}
                     placeholder = "BREED GROUP"
                     type = "text"
-                    value = {input.breedGroup}
-                    name = "breedGroup"
+                    value = {input.breed_group}
+                    name = "breed_group"
                     onChange = {(e) => handleChange(e)}
                     required
                 />
@@ -173,7 +172,7 @@ export default function DogCreate() {
                     required
                     placeholder = "MINIMUM HEIGHT -cm- "
                     type = "text"
-                    value = {input.height}
+                    value = {input.heightMin}
                     name = "heightMin"
                     onChange = {(e) => handleChange(e)}
                 />
@@ -192,7 +191,7 @@ export default function DogCreate() {
                     required
                     placeholder = "MAXIMUM HEIGHT -cm- "
                     type = "text"
-                    value = {input.height}
+                    value = {input.heightMax}
                     name = "heightMax"
                     onChange = {(e) => handleChange(e)}
                 />
@@ -266,7 +265,7 @@ export default function DogCreate() {
                 <input
                     className = {style.imageInput}
                     type = "file"
-                    name = "file"
+                    name = "image"
                     accept = "image/*"
                     multiple 
                 />
@@ -281,18 +280,15 @@ export default function DogCreate() {
                     className = {style.selectTemperaments}
                     onChange = {(e) => handleSelectTemperaments(e)}
                 >
-                    <option value = 'selected' hidden>Temperaments</option>
-                    {temperaments?.sort(function (a, b) {
-                        if (a.name < b.name) return -1;
-                        if (a.name > b.name) return 1;
-                            return 0;
-                    }).map(temperament => {
-                            return (
-                                <option value = {temperament.name} key = {temperament.id}>
-                                    {temperament.name}
-                                </option>
-                            )
-                        })}
+                    <option value = 'selected'>
+                        Temperaments
+                    </option>
+                    {temperaments.map((temperament) => (
+                        <option value = {temperament.name} key = {temperament.id}>
+                            {temperament.name}
+                        </option>
+                    )
+                    )}
                 </select>
                 {input.temperaments.map(el => {
                         return (
@@ -311,29 +307,6 @@ export default function DogCreate() {
                         )
                     })}
             </div>
-            
-            {/* <div>
-            <label className={style.labelBreeds}>
-                BREEDS:
-            </label>
-                <select
-                    required
-                    className = {style.selectBreeds}
-                    onChange = {(e) => handleSelectBreeds(e)}
-                >
-                    {breeds?.sort(function (a, b) {
-                        if (a.name < b.name) return -1;
-                        if (a.name > b.name) return 1;
-                            return 0;
-                    }).map(breed => {
-                            return (
-                                <option value = {breed.name} key = {breed.id}>
-                                    {breed.name}
-                                </option>
-                            )
-                        })}
-                </select>
-            </div> */}
             
             <button className = {style.buttonDone} type = "submit">
                 DONE

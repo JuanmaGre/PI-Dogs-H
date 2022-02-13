@@ -22,7 +22,7 @@ export default function Card({ image, name, temperaments, weightMin, weightMax }
           <img src = {image} alt = {`${name}`} width='300px' heigth='200px' className = {style.bodyCard}/>
           {
               name !== 'Sorry, looks like we don´t have that dog breed' ?
-              <h3 className = {style.temps}>Weight: {weightMax} - {weightMin} kg</h3> :
+              <h3 className = {style.temps}>Weight: {weightMin} - {weightMax} kg</h3> :
               <></>
           }
       </div>

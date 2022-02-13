@@ -12,9 +12,9 @@ export default function App() {
       <div className = "App">
         <Routes>
           <Route exact path = "/" element={<LandingPage/>} />
-          <Route path = "/home" element={<Home/>} />
+          <Route exact path = "/home" element={<Home/>} />
           <Route path = "/dog" element={<DogCreate/>} />
-          <Route path = "/dogs/:id" element={<Detail/>} />
+          <Route path = "/home/:id" element={<Detail/>} />
         </Routes>
       </div>
     </BrowserRouter>

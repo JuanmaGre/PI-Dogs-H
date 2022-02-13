@@ -19,7 +19,7 @@ export default function SearchBar() {
         e.preventDefault();
         let found = getDogs(name);
         dispatch(found);
-        setName(' ');
+        setName(' '); 
     }
 
 

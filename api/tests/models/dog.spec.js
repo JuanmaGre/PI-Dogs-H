@@ -1,6 +1,5 @@
 const { Dog, conn } = require('../../src/db.js');
 const { expect } = require('chai');
-const { dogs } = require("./array.js");
 
 describe('Dog model', () => {
   before(() => conn.authenticate()
@@ -19,32 +18,5 @@ describe('Dog model', () => {
         Dog.create({ name: 'Pug' });
       });
     });
-
-  describe(' Create dogs ', () => {
-    beforeEach(()=> {
-    Dog.bulkCreate(dogs)
-    })
-    
-    describe ('Search dog', () => {
-      it('Length db', done => {
-        Dog.findAll()
-        .then(r => expect(r.length).to.be(2))    
-        .catch(() => done())
-      });
-
-      it('Name Dog', done => {
-        Dog.findAll()
-        .then(r => expect(r[0].name).to.be.true('Robert'))
-        .catch(() => done())
-      });
-      
-      it('Fake name Dog', done => {
-        Dog.findAll()
-        .then(r => expect(r[1].name).to.be.false('Robert'))
-        .catch(() => done())
-      });
-    })
-  })
-});
-
+  });
 });

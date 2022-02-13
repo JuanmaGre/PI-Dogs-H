@@ -9,15 +9,11 @@ import {
     getDogs,
     getTemperaments,
     orderByWeight,
-    orderByHeight,
     filterByTemperaments,
     alphabeticalOrder,
     filterByBreeds
 } from "../../action/index";
 import style from "../Home/home.module.css";
-import Loader from "../images/Loader.gif";
-import DogChasingTail from "../images/DogChasingTail.gif";
-import sadDog from "../images/sadDog.gif";
 
 
 
@@ -25,10 +21,9 @@ export default function Home() {
     const dispatch = useDispatch();
     const allDogs = useSelector((state) => state.dogs);
     const temperaments = useSelector((state) => state.temperaments);
-    const isLoading = useSelector((state) => state.loading);
     const [currentPage, setCurrentPage] = useState(1);
     const dogsXPage = 8;
-    const [setOrder] = useState("");
+    const [/*order*/, setOrder] = useState("");
 
     const indexOfLastDog = currentPage * dogsXPage;
     const indexOfFirstDog = indexOfLastDog - dogsXPage;
@@ -38,42 +33,43 @@ export default function Home() {
         setCurrentPage(pageNumber);
     };
 
-    function handleAlphabeticalOrder(e) {
-        e.preventDefault();
-        dispatch(alphabeticalOrder(e.target.value));
-        setCurrentPage(1);
-        setOrder(e.target.value);
-    };
-
-    function handleFilterByTemperaments(e) {
-        dispatch(filterByTemperaments(e.target.value));
-    };
-
-    function handleFilterByBreeds(e) {
-        dispatch(filterByBreeds(e.target.value))
-    };
-
-    function handleOrderByWeight(e) {
-        dispatch(orderByWeight(e.target.value));
-    };
-
-    function handleOrderByHeight(e) {
-        dispatch(orderByHeight(e.target.value));
-    };
-
-    function handleResetsFilters() {
-        dispatch(getDogs());
-    };
-
     useEffect(() => {
-        if (!getDogs.length) {
-            dispatch(getDogs());
-        }
+        dispatch(getDogs());
     }, [dispatch]);
 
     useEffect(() => {
         dispatch(getTemperaments());
     }, [dispatch]);
+
+    function handleFilterTemperaments(e) {
+        e.preventDefault();
+        setCurrentPage(1);
+        dispatch(filterByTemperaments(e.target.value));
+    };
+
+    function handleFilterBreeds(e) {
+        e.preventDefault();
+        setCurrentPage(1);
+        dispatch(filterByBreeds(e.target.value))
+    };
+
+    function handleSortByName(e) {
+        e.preventDefault();
+        dispatch(alphabeticalOrder(e.target.value));
+        setCurrentPage(1);
+        setOrder(`Ordenado ${e.target.value}`);
+    }
+
+    function handleOrderByWeight(e) {
+        e.preventDefault();
+        dispatch(orderByWeight(e.target.value));
+        setCurrentPage(1);
+        setOrder(`Ordenado ${e.target.value}`);
+    };
+
+    function handleResetsFilters() {
+        dispatch(getDogs());
+    };
 
     window.scrollTo(0, 0);
 
@@ -81,18 +77,23 @@ export default function Home() {
         <div className = {style.home}>
             <nav className = {style.nav} />
             <SearchBar />
+            <div className = {style.divReset}>
+                    <button className = {style.buttonReset} onClick = {e => handleResetsFilters(e)}>
+                        Reset Search
+                    </button>
+            </div>
             <div className = {style.createDog}>
                 <Link to = "/dog" key = 'create' > Create Dog </Link>
             </div>
             <div className = {style.filters}>
                 <div className = {style.alphabeticalOrder}>
                     <label className = {style.labels}>
-                        Order:
+                        Name:
                     </label>
-                    <select className = {style.selects} onChange = {(e) => handleAlphabeticalOrder(e)}>
+                    <select className = {style.selects} onChange = {(e) => handleSortByName(e)}>
                         <option value = "None"> None </option>
-                        <option value = "A - Z"> A - Z </option>
-                        <option value = "Z - A"> Z - A </option>
+                        <option value = "A-Z"> A - Z </option>
+                        <option value = "Z-A"> Z - A </option>
                     </select>
                 </div>
                 <div className = {style.orderByWeight}>
@@ -101,25 +102,15 @@ export default function Home() {
                     </label>
                     <select className = {style.selects} onChange = {(e) => handleOrderByWeight(e)}>
                         <option value = "None"> None </option>
-                        <option value = "Min - Max"> Min to Max </option>
-                        <option value = "Max - Min"> Max to Min </option>
-                    </select>
-                </div>
-                <div className = {style.orderByHeight}>
-                    <label className = {style.labels}> 
-                        Height:
-                    </label>
-                    <select className = {style.selects} onChange = {(e) => handleOrderByHeight(e)}>
-                        <option value = "None"> None </option>
-                        <option value = "Smallest - Largest"> Smallest to Largest </option>
-                        <option value = "Largest - Smalless"> Largest to Smallest </option>
+                        <option value = "Min-Max"> Min to Max </option>
+                        <option value = "Max-Min"> Max to Min </option>
                     </select>
                 </div>
                 <div className = {style.filterByTemperaments}>
                     <label className = {style.labels}>
                         Temperaments:
                     </label>
-                    <select className = {style.selects} onChange = {(e) => handleFilterByTemperaments(e)}>
+                    <select className = {style.selects} onChange = {(e) => handleFilterTemperaments(e)}>
                         <option value = "All"> All </option>
                         {temperaments.map((temperament) => (
                             <option key = {temperament.id} required value = {temperament.name}>
@@ -132,63 +123,42 @@ export default function Home() {
                     <label className = {style.labels}>
                         Breeds:
                     </label>
-                    <select className = {style.selects} onChange = {(e) => handleFilterByBreeds(e)}>
+                    <select className = {style.selects} onChange = {(e) => handleFilterBreeds(e)}>
                         <option value = "All">
-                            All:
-                        </option>
-                        <option value = "Created" key = "Ctd">
-                            Dog Created:
+                            All breeds:
                         </option>
                         <option value = "apiInfo" key = "Api">
-                            Dog Api:
+                            Existent breeds:
+                        </option>
+                        <option value = "created" key = "Ctd">
+                            Created breeds:
                         </option>
                     </select>
-                <div className = {style.divReset}>
-                    <button className = {style.buttonReset} onClick = {e => handleResetsFilters(e)}>
-                        Reset Search
-                    </button>
-                </div>
                 
+                <div className = {style.paginado}>
                 <Paginado dogsXPage = {dogsXPage} allDogs = {allDogs.length} paginado = {paginado} />
                 </div>
-                {isLoading ? (
-                    <div>
-                        <div className = {style.dogChasingTailGif}>
-                            <img src = {DogChasingTail} alt = "DogChasingTail.gif" />
-                        </div>
-                        <div className = {style.loaderGif}>
-                            <img src = {Loader} alt = "Loader.gif" />
-                        </div>
-                    </div>
-                ) : (
-                    <div className = {style.parent}>
-                        {currentDogs.length ? (currentDogs.map((e) => {
+            </div>
+
+                <div className = {style.parent}>
+                        {currentDogs?.map((e) => {
                             return (
-                                <Link key = {e.id} to = {"/home/" + e.id}>
+                                <div key = {e.id} className = {style.card}>
+                                <Link to = {"/home/" + e.id}>
                                     <Card
-                                        className = {style.card}
-                                        image = {e.image}
                                         name = {e.name}
-                                        key = {e.id}
+                                        image = {e.image}
                                         temperaments = {e.temperaments}
+                                        weightMin = {e.weightMin}
+                                        weightMax = {e.weightMax}
+                                        key = {e.id}                                        
                                     />
                                 </Link>
+                                </div>
                             );
                         })
-                        ) : (
-                            <div>
-                                <div className = {style.sadDogGif}>
-                                <img src = {sadDog} alt = "sadDog.gif" />
-                                </div>
-                            <div className = {style.noResultsDiv}>
-                                <h3>
-                                    NO RESULTS FOUND!
-                                </h3>
-                            </div>
-                            </div>
-                        )}
-                    </div>
-                )}
+                    }
+                </div>
                 </div>
         </div>
     );

@@ -6,7 +6,6 @@ import {
     GET_DOGS_NAME,
     POST_DOG,
     ALPHABETICAL_ORDER,
-    ORDER_BY_HEIGHT,
     ORDER_BY_WEIGHT,
     FILTER_BY_TEMPERAMENTS,
     FILTER_BY_BREEDS
@@ -56,50 +55,67 @@ function rootReducer (state = initialState, action) {
                 ...state,
             }
         case ALPHABETICAL_ORDER:
-            const sortedName = action.payload === 'asc' ? state.dogs.sort(function (a, b) {
-                    if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                        return 1;
+            let sortedName = [...state.allDogs]
+            switch(action.payload) {
+                case "A-Z": 
+                    return {
+                        ...state,
+                        dogs: sortedName.sort((a, b) => {
+                            if(a.name > b.name) return 1;
+                            if(b.name < a.name) return -1;
+                            return 0;
+                        })
+                    };
+                case "Z-A": 
+                    return {
+                        ...state,
+                        dogs: sortedName.sort((a, b) => {
+                            if(a.name > b.name) return -1;
+                            if(b.name < a.name) return 1;
+                            return 0;
+                        })
+                    };
+                case "None":
+                    return {
+                        ...state,
+                        dogs: [...state.allDogs]
                     }
-                    if (b.name.toLowerCase() > a.name.toLowerCase()) {
-                        return -1;
+                default:
+                    return {
+                        ...state,
                     }
-                    return 0
-                }) : state.dogs.sort(function (a, b) {
-                    if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                        return -1;
-                    }
-                    if (b.name.toLowerCase() > a.name.toLowerCase()) {
-                        return 1;
-                    }
-                    return 0;
-                })
-            return {
-                ...state,
-                dogs: sortedName,
             }
+            
         case ORDER_BY_WEIGHT:
-            const sortedWeight = action.payload === 'asc' ?
-                state.dogs.sort(function (a, b) {
-                    return parseInt(a.weightMin) - parseInt(b.weightMin);
-                }) :
-                state.dogs.sort(function (a, b) {
-                    return parseInt(b.weightMax) - parseInt(a.weightMax);
-                });
-            return {
-                ...state,
-                dogs: sortedWeight,
-            }
-        case ORDER_BY_HEIGHT:
-            const sortByHeight = action.payload === 'asc' ?
-                state.dogs.sort(function (a, b) {
-                    return parseInt(a.heightMin) - parseInt(b.heightMin);
-                }) :
-                state.dogs.sort(function (a, b) {
-                    return parseInt(b.heightMax) - parseInt(a.heightMax);
-                });
-            return {
-                ...state,
-                dogs: sortByHeight,
+            let sortedWeight = [...state.allDogs]
+            switch(action.payload) {
+                case "Min-Max": 
+                    return {
+                        ...state,
+                        dogs: sortedWeight.sort((a, b) => {
+                            if(a.weightMin > b.weightMin) return 1;
+                            if(b.weightMax < a.weightMax) return -1;
+                            return 0;
+                        })
+                    };
+                case "Max-Min": 
+                    return {
+                        ...state,
+                        dogs: sortedWeight.sort((a, b) => {
+                            if(a.weightMin > b.weightMin) return -1;
+                            if(b.weightMax < a.weightMax) return 1;
+                            return 0;
+                        })
+                    };
+                case "None":
+                    return {
+                        ...state,
+                        dogs: [...state.allDogs]
+                    }
+                default:
+                    return {
+                        ...state,
+                    }
             }
         case FILTER_BY_TEMPERAMENTS:
             const allDogs = state.allDogs;

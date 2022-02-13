@@ -1,106 +1,75 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../../action/index";
-import style from "../Detail/detail.module.css";
+import React from "react";
 import { Link } from "react-router-dom";
-import Loader from '../images/Loader.gif';
-import DogChasingTail from '../images/DogChasingTail.gif';
-
+import { useDispatch, useSelector } from "react-redux";
+import { getDetail } from "../../action";
+import { useEffect } from "react";
+import style from "../Detail/detail.module.css";
+import dogChasingTail from "../images/DogChasingTail.gif";
+import loader from "../images/Loader.gif";
 
 
 export default function Detail(props) {
     const dispatch = useDispatch();
-    const myDog = useSelector((state) => state.detail);
-
     const id = props.match.params.id;
 
-    useEffect (() => {
-    dispatch(getDetail(id));
+    useEffect(() => {
+        dispatch(getDetail(id));
     }, [dispatch, id]);
 
-    window.scrollTo(0, 0);
-    
+    const myDog = useSelector((state) => state.detail);
+
+
+
     return (
-      <div classname = {style.container} id = "container">
-        <Link to = "/home">
-          <button className = {style.button} id = 'home'>
-            Home
-          </button>
-        </Link>
-        <Link to = "/dogs">
-          <button className = {style.button}>
-            Create Dog
-          </button>
-        </Link>
-        {myDog.length > 0 ? (
-          <div classname = {style.general}>
-            <div classname = {style.title}>
-              <h1 classname = {style.titleB}>
-                NAME: {myDog.name}
-              </h1>
-            </div>
-            <div className = {style.onTopImg} src = {myDog.image} alt = "onTopImage.jpg" />
-            
-            <div className = {style.temps}>
-              <h2 className = {style.tempsWords}>
-                TEMPERAMENTS: 
-              </h2>
-                <ul className = {style.temps}>
-                  {myDog.createdInDb ? myDog.temperaments.map(el => {
-                    return <li key = {el.race_temperament.temperamentId}>
-                      <label>
-                        {el.name}
-                      </label>
-                    </li>
-                  }) : myDog.temperaments ? myDog.temperaments.split(', ').map(el => {
-                    return <li key = {el}>
-                      <label>
-                        {el}
-                      </label>
-                    </li>
-                  }) : '🤷‍♂️ No temperaments founded for this breed 🤷‍♀️'}
-                </ul>
-            </div>
-            
-            <div className = {style.height}>
-              <h2 className = {style.heightWords}>
-                HEIGHT: {myDog.heightMin} - {myDog.heightMax} cm
-              </h2>
-            </div>
-            
-            <div className = {style.weightDiv}>
-              <h3 className = {style.weightWords}>
-                WEIGHT: {myDog.weightMin} - {myDog.weightMax} kg
-              </h3>
-            </div>
-            
-            <div className = {style.lifeSpan}>
-              <h4 className = {style.lifeSpanWords}>
-                LIFESPAN: {myDog.life_span}
-              </h4>
-            </div>
-            
-            <div>
-              <img className = {style.backgroundImg} src = {myDog.image} alt = "BackgroundImage.jpg" />
-            </div>
-          </div>
-        ) : (
-          <div className = {style.loader}>
-            <div className = {style.dogChasingTail}> 
-              <img src = {DogChasingTail} alt = "DogChasingTail.gif" />
-            </div>
-            
-            <div>
-              <img src = {Loader} alt = "Loader.gif" />
-            </div>
-          </div>
-        )
-        }
-            <div className = {style.goBackDiv}>
-              <Link to = "/home">
-                <button className = {style.goBackButton}> Go Back </button>
-              </Link>
-            </div>
-          </div>
+        <div className = {style.divDetail}>
+            <Link to = '/home'>
+                <button className = {style.buttonHome1} id='home'>
+                    Home
+                </button>
+            </Link>
+            <Link to ='/dogs'>
+                <button className = {style.buttonHome1}>
+                    Create 
+                </button>
+            </Link>
+                {myDog.length > 0 ?
+                    <div>
+                        <h1 className = {style.name}>{myDog[0].name}</h1>
+                        <ul className = {style.asd}>
+                            <li>
+                                <div>
+                                    <img src={myDog[0].image} alt={myDog[0].name} className = {style.image} />
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <h4 className = {style.caracts}>Temperaments:</h4>
+                                    <ul className = {style.allTemps}>
+                                        {myDog[0].createdInDb ?
+                                            myDog[0].temperaments.map(el => {
+                                                return <li key={el.race_temperament.temperamentId}><label>{el.name}</label></li>
+                                            }) :
+                                            myDog[0].temperaments ?
+                                                myDog[0].temperaments.split(', ').map(el => {
+                                                    return <li key={el}><label>{el}</label></li>
+                                                }) :
+                                                '🤷‍♂️ No temperaments provided for this breed 🤷‍♀️'}
+                                    </ul>
+                                    <h4 className = {style.caracts}>Height</h4>
+                                    <p>{myDog[0].heightMin} - {myDog[0].heightMax} cm</p>
+                                    <h4 className = {style.caracts}>Weight</h4>
+                                    <p>{myDog[0].weightMin} - {myDog[0].weightMax} kg</p>
+                                    <h4 className = {style.caracts}>Life span</h4>
+                                    <p className = {style.last}>{myDog[0].life_span}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> :
+                    <div className = {style.loading}>
+                        <img className = {style.dogChasingTail} src = {dogChasingTail} alt = "doggie"></img>
+                        <img className = {style.loader} src = {loader} alt = "loading"></img>
+                    </div>
+                }
+        </div>
     )
 }

@@ -1,7 +1,7 @@
 .card {
     position: relative;
     color: rgb(255, 255, 255);
-    background: linear-gradient(rgb(95, 0, 0), rgb(0, 0, 0));
+    background: linear-gradient(-180deg, olivedrab 0%, rgb(146, 207, 187) 50%, olivedrab 100%);
     width: 300px;
     height: 500px;
     display: flex;
@@ -9,19 +9,19 @@
     margin: 2px;
     border-radius: 2em;
     border-style:solid;
-    border-color:rgb(95, 0, 0);
+    border-color:olivedrab;
     transition: 0.4s;
     align-items: center;
 }
 
 .card:hover {
-    box-shadow: 0 0 10px rgb(100, 10, 10),
-                0 0 20px rgb(255, 123, 0),
-                0 0 30px rgb(255, 0, 200),
-                0 0 40px rgb(98, 0, 255);
-    transform: translate3d(0.1ch, 0.1in, 7em);
-    background: linear-gradient(rgba(95, 0, 0, 0.6), rgb(0, 0, 0, 0.6));
-    color: rgba(255, 255, 255, 0.5);                
+    box-shadow: 0 0 10px rgba(19, 40, 228),
+                0 0 20px rgb(122, 122, 150),
+                0 0 30px rgb(122, 122, 150),
+                0 0 40px rgba(19, 40, 228);
+    transform: translate3d(0.1ch, 0.1in, 8em);
+    background: linear-gradient(rgba(8, 10, 10, 0.6), rgba(12, 74, 85, 0.6));
+    color: gold;                
 } 
 
 .bodyCard{
@@ -42,15 +42,16 @@
 
 .names {
     padding: 2px;
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,0,60,1) 50%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%);
     word-spacing: 2px;
     letter-spacing: 1px;
     font-size: large;
+    text-decoration: none;
 }
 
 .temps {
     padding: 2px;
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,0,60,1) 50%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%);
     word-spacing: 2px;
     letter-spacing: 1px;
     font-size: small;

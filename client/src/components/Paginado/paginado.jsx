@@ -4,19 +4,12 @@ import style from '../Paginado/paginado.module.css';
 
 export default function Paginado({dogsXPage, allDogs, paginado}) {
     const pageNumber = [];
-    for (let i = 0; i <= Math.ceil(allDogs / dogsXPage); i++) {
-        pageNumber.push(i + 1);
+    for (let i = 1; i <= Math.ceil(allDogs / dogsXPage); i++) {
+        pageNumber.push(i);
     }
 
     return (
         <nav>
-            {/* <div>
-                {pageNumber?.map(number => (
-                    <button classname = {style.numbers} key = {number} onClick = {() => paginado(number)}>
-                        {number}
-                    </button>
-                ))}
-            </div> */}
             <ul className = {style.paginado}>
                 {pageNumber.length > 1 && 
                 pageNumber.map(number => (
