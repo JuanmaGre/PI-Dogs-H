@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../action";
 import { useEffect } from "react";
@@ -8,13 +8,13 @@ import dogChasingTail from "../images/DogChasingTail.gif";
 import loader from "../images/Loader.gif";
 
 
-export default function Detail(props) {
+export default function Detail() {
     const dispatch = useDispatch();
-    const id = props.match.params.id;
+    const params = useParams();
 
     useEffect(() => {
-        dispatch(getDetail(id));
-    }, [dispatch, id]);
+        dispatch(getDetail(params.id));
+    }, [dispatch, params.id]);
 
     const myDog = useSelector((state) => state.detail);
 
@@ -27,7 +27,7 @@ export default function Detail(props) {
                     Home
                 </button>
             </Link>
-            <Link to ='/dogs'>
+            <Link to ='/dog'>
                 <button className = {style.buttonHome1}>
                     Create 
                 </button>
@@ -45,9 +45,9 @@ export default function Detail(props) {
                                 <div>
                                     <h4 className = {style.caracts}>Temperaments:</h4>
                                     <ul className = {style.allTemps}>
-                                        {myDog[0].createdInDb ?
+                                    {myDog[0].createdInDb ?
                                             myDog[0].temperaments.map(el => {
-                                                return <li key={el.race_temperament.temperamentId}><label>{el.name}</label></li>
+                                                return <li key={el.dog_temperament.temperamentId}><label>{el.name}</label></li>
                                             }) :
                                             myDog[0].temperaments ?
                                                 myDog[0].temperaments.split(', ').map(el => {

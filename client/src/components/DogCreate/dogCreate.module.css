@@ -181,7 +181,7 @@
 }
 
 .labelTemperaments {
-    color: white;
+    color: rgba(19, 40, 228, 0.959);
     font-weight: bold;
     position: absolute;
     bottom: 175px;
@@ -211,16 +211,16 @@
     cursor: pointer;
 }
 
-.selecttemperaments {
-    background-color: rgba(255,0,60,1); 
-    color: white;
+.selectTemperaments {
+    background-color: white;
+    color: black;
     font-weight: bold;
-    position: relative;
-    bottom: 30px;
-    right: 10px;
+    position: absolute;
+    bottom: 165px;
+    right: 160px;
     border-radius: 5px;
     border: none;
-    width: 80px;
+    width: 150px;
     height: 20px;
     margin-bottom: 10px;  
     text-align-last: center;

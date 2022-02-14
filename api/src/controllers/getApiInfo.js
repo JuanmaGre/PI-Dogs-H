@@ -19,8 +19,8 @@ const getApiInfo = () => {
                     (el.weight.metric.split(' - ')[1] ?
                         Math.round(el.weight.metric.split(' - ')[1] * 0.6) :
                         '30'),
-                weightMax: el.weight.metric.split(' - ')[1] ?
-                    el.weight.metric.split(' - ')[1] :
+                weightMax: el.weight.imperial.split(' - ')[1] ?
+                    el.weight.imperial.split(' - ')[1] :
                     '39',
                 life_span: el.life_span,
                 temperaments: el.temperament ? el.temperament : null,

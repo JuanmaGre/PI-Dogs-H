@@ -93,18 +93,14 @@ function rootReducer (state = initialState, action) {
                     return {
                         ...state,
                         dogs: sortedWeight.sort((a, b) => {
-                            if(a.weightMin > b.weightMin) return 1;
-                            if(b.weightMax < a.weightMax) return -1;
-                            return 0;
+                            return parseInt(a.weightMin) - parseInt(b.weightMin);
                         })
                     };
                 case "Max-Min": 
                     return {
                         ...state,
                         dogs: sortedWeight.sort((a, b) => {
-                            if(a.weightMin > b.weightMin) return -1;
-                            if(b.weightMax < a.weightMax) return 1;
-                            return 0;
+                            return parseInt(b.weightMax) - parseInt(a.weightMax);
                         })
                     };
                 case "None":

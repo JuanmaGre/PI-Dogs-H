@@ -19,7 +19,7 @@ export default function Card({ image, name, temperaments, weightMin, weightMax }
               }
             }(temperaments)}
           </h3>
-          <img src = {image} alt = {`${name}`} width='300px' heigth='200px' className = {style.bodyCard}/>
+          <img src = {image} alt = {`${name}`} className = {style.bodyCard}/>
           {
               name !== 'Sorry, looks like we don´t have that dog breed' ?
               <h3 className = {style.temps}>Weight: {weightMin} - {weightMax} kg</h3> :

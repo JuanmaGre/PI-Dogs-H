@@ -14,7 +14,7 @@ export default function App() {
           <Route exact path = "/" element={<LandingPage/>} />
           <Route exact path = "/home" element={<Home/>} />
           <Route path = "/dog" element={<DogCreate/>} />
-          <Route path = "/home/:id" element={<Detail/>} />
+          <Route path = "/dogs/:id" element={<Detail/>} />
         </Routes>
       </div>
     </BrowserRouter>
