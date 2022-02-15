@@ -12,64 +12,61 @@ export default function Detail() {
     const dispatch = useDispatch();
     const params = useParams();
 
+    const myDog = useSelector((state) => state.dogs);
+
     useEffect(() => {
         dispatch(getDetail(params.id));
     }, [dispatch, params.id]);
-
-    const myDog = useSelector((state) => state.detail);
-
 
 
     return (
         <div className = {style.divDetail}>
             <Link to = '/home'>
                 <button className = {style.buttonHome1} id='home'>
-                    Home
+                    Back to home
                 </button>
             </Link>
             <Link to ='/dog'>
-                <button className = {style.buttonHome1}>
-                    Create 
+                <button className = {style.create}>
+                    Create new Dog
                 </button>
             </Link>
-                {myDog.length > 0 ?
+            <div>
+                {myDog.length > 0 ? myDog.map((e) => {
+                    return (
                     <div>
-                        <h1 className = {style.name}>{myDog[0].name}</h1>
-                        <ul className = {style.asd}>
-                            <li>
-                                <div>
-                                    <img src={myDog[0].image} alt={myDog[0].name} className = {style.image} />
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <h4 className = {style.caracts}>Temperaments:</h4>
-                                    <ul className = {style.allTemps}>
-                                    {myDog[0].createdInDb ?
-                                            myDog[0].temperaments.map(el => {
-                                                return <li key={el.dog_temperament.temperamentId}><label>{el.name}</label></li>
-                                            }) :
-                                            myDog[0].temperaments ?
-                                                myDog[0].temperaments.split(', ').map(el => {
-                                                    return <li key={el}><label>{el}</label></li>
-                                                }) :
-                                                '🤷‍♂️ No temperaments provided for this breed 🤷‍♀️'}
-                                    </ul>
-                                    <h4 className = {style.caracts}>Height</h4>
-                                    <p>{myDog[0].heightMin} - {myDog[0].heightMax} cm</p>
-                                    <h4 className = {style.caracts}>Weight</h4>
-                                    <p>{myDog[0].weightMin} - {myDog[0].weightMax} kg</p>
-                                    <h4 className = {style.caracts}>Life span</h4>
-                                    <p className = {style.last}>{myDog[0].life_span}</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div> :
-                    <div className = {style.loading}>
-                        <img className = {style.dogChasingTail} src = {dogChasingTail} alt = "doggie"></img>
-                        <img className = {style.loader} src = {loader} alt = "loading"></img>
-                    </div>
+                    <ul className = {style.asd}>
+                    <h1 className = {style.name}>{e.name}</h1>
+                        <li>
+                            <div>
+                                <img src = {e.image} alt ={e.name} className = {style.image} />
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h4 className = {style.caracts}>Temperaments:</h4>
+                                <ul className = {style.allTemps}>
+                                    {e.createdInDb ?
+                                    e.temperaments.map((el) => el.name).join(", ") :
+                                    e.temperament}
+                                </ul>
+                                <h4 className = {style.caracts}>Height</h4>
+                                <p>{e.heightMin} - {e.heightMax} cm</p>
+                                <h4 className = {style.caracts}>Weight</h4>
+                                <p>{e.weightMin} - {e.weightMax} kg</p>
+                                <h4 className = {style.caracts}>Life span</h4>
+                                <p className = {style.last}>{e.life_span}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div> 
+                    )}) :
+                <div className = {style.loading}>
+                    <img className = {style.dogChasingTail} src = {dogChasingTail} alt = "doggie"></img>
+                    <img className = {style.loader} src = {loader} alt = "loading"></img>
+                </div>
                 }
+            </div>
         </div>
     )
 }

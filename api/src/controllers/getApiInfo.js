@@ -10,18 +10,10 @@ const getApiInfo = () => {
             return {
                 id: el.id,
                 name: el.name,
-                heightMin: el.height.metric.split(' - ')[0],
-                heightMax: el.height.metric.split(' - ')[1] ?
-                    el.height.metric.split(' - ')[1] :
-                    Math.round(el.height.metric.split(' - ')[0] * 1.1),
-                weightMin: el.weight.metric.split(' - ')[0] !== "NaN" ?
-                    el.weight.metric.split(' - ')[0] :
-                    (el.weight.metric.split(' - ')[1] ?
-                        Math.round(el.weight.metric.split(' - ')[1] * 0.6) :
-                        '30'),
-                weightMax: el.weight.imperial.split(' - ')[1] ?
-                    el.weight.imperial.split(' - ')[1] :
-                    '39',
+                heightMin: el.height.imperial.split(' - ')[0],
+                heightMax: el.height.metric.split(' - ')[1],
+                weightMin: el.weight.metric.split(' - ')[0],
+                weightMax: el.weight.imperial.split(' - ')[1],
                 life_span: el.life_span,
                 temperaments: el.temperament ? el.temperament : null,
                 image: el.image.url,

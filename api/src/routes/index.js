@@ -7,13 +7,15 @@ const { YOUR_API_KEY } = process.env;
 
 const { Dog, Temperament } = require('../db');
 
-const { getAllDogs } = require('../controllers/getAllDogs')
+const { getAllDogs } = require('../controllers/getAllDogs');
+
 require('dotenv').config();
 
 
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
 
 router.get('/dogs', async (req, res, next) => {
     try {
@@ -36,17 +38,17 @@ router.get('/dogs', async (req, res, next) => {
     }
 });
 
-router.get('/dogs/:raceId', async (req, res, next) => {
+router.get('/dogs/:raceId', async (req, res) => {
     const { raceId } = req.params;
+
     const allRaces = await getAllDogs();
     if (raceId) {
-        let race = await allRaces.filter(el => el.id === raceId || el.id ===
-            raceId.includes("-") && typeof raceId === 'string');
-        race.length ? res.status(200).json(race) : res.status(404).send(`Sorry, we don´t have a race with ${raceId} as ID 🤷‍♀️`);
-    } 
+        let race = await allRaces.filter(el => el.id === raceId);
+        race.length > 0 ? res.status(200).json(race) : res.status(404).send(`Sorry, we don´t have a race with ${raceId} as ID`);
+    }
 })
 
-router.get('/temperament', async (_req, res) => {
+router.get('/temperament', async (req, res) => {
     let infoApi = await axios(`https://api.thedogapi.com/v1/breeds?api_key=${YOUR_API_KEY}`);
     let tempsRepeated = infoApi.data.map(el => el.temperament).toString();
     tempsRepeated = await tempsRepeated.split(',');
@@ -105,6 +107,8 @@ router.post('/dogs', async (req, res) => {
     dogCreated.addTemperament(temperamentDB);
     res.status(200).send('🐕 Dog successfully created 🐶')
 });
+
+
 
 
 

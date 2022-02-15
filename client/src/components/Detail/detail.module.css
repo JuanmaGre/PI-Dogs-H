@@ -8,24 +8,44 @@
 .buttonHome1{
     background-color: #b7b7a4;
     float: left;
+    position: relative;
     font-size: medium;
     margin-left: 0px;
     margin-top: 36px;
-    height: 43px;
+    height: 40px;
     border: transparent;
     border-radius: 8px;
     cursor: pointer;
 }
 .buttonHome1:hover{
-    background-color: #a5a58d;
+    background-color: cornflowerblue;
 }
 #home{
     margin-left: 40px
 }
 
+.create{
+    background-color: #b7b7a4;
+    float: left;
+    position: relative;
+    font-size: medium;
+    margin-left: 5px;
+    margin-top: 36px;
+    height: 40px;
+    border: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.create:hover{
+    background-color: cornflowerblue;
+}
+#create{
+    margin-left: 40px
+}
+
 .name{
     color: #6b705c;
-    padding-right: 90px;
+    top: 20px;
 }
 
 .asd{
@@ -89,19 +109,19 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    top: 25px;
+    top: 70px;
     width: 20%;
-    left: 400px;
+    left: 500px;
 }
 
 .loader {
     display: flex;
     flex-direction: column;
     position:relative;
-    top: 30px;
-    height: 20%;
+    top: 80px;
+    height: 10%;
     width: 20%;
-    left: 400px;
+    left: 500px;
     background:rgb(60, 175, 137);
     background-position: center;
     background-repeat: no-repeat;

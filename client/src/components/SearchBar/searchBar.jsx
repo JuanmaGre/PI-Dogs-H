@@ -13,13 +13,14 @@ export default function SearchBar() {
     function handleInputChange(e) {
         e.preventDefault();
         setName(e.target.value);
+        console.log(name);
     }
 
     function handleSubmit (e) {
         e.preventDefault();
         let found = getDogs(name);
         dispatch(found);
-        setName(' '); 
+        setName(''); 
     }
 
 
@@ -33,7 +34,8 @@ export default function SearchBar() {
                     id = 'Search'
                     value = {name}
                     placeholder = "Search a Breed"
-                    onChange = {handleInputChange} />
+                    onChange = {e => handleInputChange(e)}
+                />
 
                 <button className = {style.buttonSearch} type = "submit" onClick = {(e) => handleSubmit(e)}>
                     Search
