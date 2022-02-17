@@ -12,12 +12,11 @@ export default function Detail() {
     const dispatch = useDispatch();
     const params = useParams();
 
-    const myDog = useSelector((state) => state.dogs);
+    const myDog = useSelector((state) => state.detail);
 
     useEffect(() => {
         dispatch(getDetail(params.id));
     }, [dispatch, params.id]);
-
 
     return (
         <div className = {style.divDetail}>
@@ -47,7 +46,7 @@ export default function Detail() {
                                 <h4 className = {style.caracts}>Temperaments:</h4>
                                 <ul className = {style.allTemps}>
                                     {e.createdInDb ?
-                                    e.temperaments.map((el) => el.name).join(", ") :
+                                    e.temperaments.map((el) => el.temperaments).join(", ") :
                                     e.temperament}
                                 </ul>
                                 <h4 className = {style.caracts}>Height</h4>
