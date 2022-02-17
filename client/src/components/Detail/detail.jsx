@@ -45,9 +45,7 @@ export default function Detail() {
                             <div>
                                 <h4 className = {style.caracts}>Temperaments:</h4>
                                 <ul className = {style.allTemps}>
-                                    {e.createdInDb ?
-                                    e.temperaments.map((el) => el.temperaments).join(", ") :
-                                    e.temperament}
+                                    {e.temperaments}
                                 </ul>
                                 <h4 className = {style.caracts}>Height</h4>
                                 <p>{e.heightMin} - {e.heightMax} cm</p>
