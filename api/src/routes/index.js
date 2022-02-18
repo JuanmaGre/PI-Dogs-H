@@ -42,7 +42,7 @@ router.get('/dogs/:raceId', async (req, res) => {
     const { raceId } = req.params;
 
     const allRaces = await getAllDogs();
-    let idNum = parseInt(raceId);
+    const idNum = parseInt(raceId);
     
     if (raceId) {
         let race = await allRaces.filter(el => el.id === idNum);

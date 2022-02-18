@@ -11,9 +11,6 @@ function validate(input) {
     if (!input.name) {
         errors.name = 'Your breed must have a name';
     }
-    else if (!input.breed_group) {
-        errors.breedGroup = 'Breed group is required!!';
-    }
     else if (!input.heightMin) {
         errors.heightMin = 'Minimum height is required!!';
     }
@@ -130,25 +127,6 @@ export default function DogCreate() {
                 )}
             </div>
             
-            <div className = {style.breedGroupDiv}>
-                <input
-                    className = {style.breedGroupInput}
-                    placeholder = "BREED GROUP"
-                    type = "text"
-                    value = {input.breed_group}
-                    name = "breed_group"
-                    onChange = {(e) => handleChange(e)}
-                    required
-                />
-                {errors.breedGroup && (
-                    <p className = {style.error}>
-                        <strong>
-                            {errors.breedGroup}
-                        </strong>
-                    </p>
-                )}
-            </div>
-
             <div className = {style.heightDiv}>
                 <input
                     className = {style.heightInput}
