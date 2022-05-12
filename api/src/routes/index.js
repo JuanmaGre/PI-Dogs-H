@@ -44,9 +44,18 @@ router.get('/dogs/:raceId', async (req, res) => {
     const allRaces = await getAllDogs();
     const idNum = parseInt(raceId);
     
-    if (raceId) {
+    if (raceId.length > 14) {
+        let race = await allRaces.filter(el => el.id === raceId);
+        res.status(200).json(race)
+        if (!race) {
+            res.status(404).send(`Sorry, we don´t have a race with ${raceId} as ID`);
+        }
+    } else {
         let race = await allRaces.filter(el => el.id === idNum);
-        race.length > 0 ? res.status(200).json(race) : res.status(404).send(`Sorry, we don´t have a race with ${raceId} as ID`);
+        res.status(200).json(race)
+        if (!race) {
+            res.status(404).send(`Sorry, we don´t have a race with ${raceId} as ID`);
+        }
     }
 })
 

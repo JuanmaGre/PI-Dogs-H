@@ -60,6 +60,7 @@ export default function DogCreate() {
     };
 
     function handleSelectTemperaments(e) {
+        e.preventDefault();
         setInput({
             ...input,
             temperaments: [...input.temperaments, e.target.value]
@@ -253,6 +254,7 @@ export default function DogCreate() {
                         </option>
                     )
                     })}
+
                 </select>
                 {input.temperaments.map(el => {
                     return (

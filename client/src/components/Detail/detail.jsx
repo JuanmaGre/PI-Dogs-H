@@ -18,6 +18,7 @@ export default function Detail() {
         dispatch(getDetail(params.id));
     }, [dispatch, params.id]);
 
+
     return (
         <div className = {style.divDetail}>
             <Link to = '/home'>
@@ -32,6 +33,7 @@ export default function Detail() {
             </Link>
             <div>
                 {myDog.length > 0 ? myDog.map((e) => {
+                    console.log(e);
                     return (
                     <div>
                     <ul className = {style.asd}>
@@ -45,7 +47,22 @@ export default function Detail() {
                             <div>
                                 <h4 className = {style.caracts}>Temperaments:</h4>
                                 <ul className = {style.allTemps}>
-                                    {e.temperaments}
+                                    {e.temperaments ? 
+                                        typeof e.temperaments === "object" ? 
+                                        e.temperaments.map((element) => {
+                                            if (element) {
+                                                return " " + element
+                                            }
+                                            return element.temperaments
+                                        })
+                                        : e.temperaments
+                                        : e.temperaments.map((element) => {
+                                            if (element) {
+                                                return " " + element.name
+                                            }
+                                            return element.temperaments
+                                        })
+                                    }
                                 </ul>
                                 <h4 className = {style.caracts}>Height</h4>
                                 <p>{e.heightMin} - {e.heightMax} cm</p>
@@ -67,3 +84,7 @@ export default function Detail() {
         </div>
     )
 }
+
+/*
+
+*/

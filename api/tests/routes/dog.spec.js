@@ -5,8 +5,14 @@ const app = require('../../src/app.js');
 const { Dog, conn } = require('../../src/db.js');
 
 const agent = session(app);
+
 const dog = {
-  name: 'Pug',
+  name: 'Zury',
+  heightMin: '12',
+  heightMax: '75',
+  weightMin: '1',
+  weightMax: '24',
+  life_span: '16'  
 };
 
 describe('Dog routes', () => {
