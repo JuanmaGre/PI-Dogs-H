@@ -83,12 +83,12 @@ export default function Home() {
                     </button>
             </div>
             <div className = {style.createDog}>
-                <Link to = "/dog" key = 'create' > Create Dog </Link>
+                <Link to = "/dog" key = 'create' > Create Breed </Link>
             </div>
             <div className = {style.filters}>
                 <div className = {style.alphabeticalOrder}>
                     <label className = {style.labels}>
-                        Name:
+                        Name: 
                     </label>
                     <select className = {style.selects} onChange = {(e) => handleSortByName(e)}>
                         <option value = "None"> None </option>
@@ -98,7 +98,7 @@ export default function Home() {
                 </div>
                 <div className = {style.orderByWeight}>
                     <label className = {style.labels}> 
-                        Weight:
+                        Weight: 
                     </label>
                     <select className = {style.selects} onChange = {(e) => handleOrderByWeight(e)}>
                         <option value = "None"> None </option>
@@ -108,7 +108,7 @@ export default function Home() {
                 </div>
                 <div className = {style.filterByTemperaments}>
                     <label className = {style.labels}>
-                        Temperaments:
+                        Temperaments: 
                     </label>
                     <select className = {style.selects} onChange = {(e) => handleFilterTemperaments(e)}>
                         <option value = "All"> All </option>
@@ -121,17 +121,17 @@ export default function Home() {
                 </div>
                 <div className = {style.filterByBreeds}>
                     <label className = {style.labels}>
-                        Breeds:
+                        Breeds: 
                     </label>
                     <select className = {style.selects} onChange = {(e) => handleFilterBreeds(e)}>
                         <option value = "All">
-                            All breeds:
+                            All breeds
                         </option>
                         <option value = "apiInfo" key = "Api">
-                            Existent breeds:
+                            Existent breeds
                         </option>
                         <option value = "created" key = "Ctd">
-                            Created breeds:
+                            Created breeds
                         </option>
                     </select>
                 

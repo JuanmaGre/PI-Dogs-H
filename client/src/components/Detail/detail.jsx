@@ -21,70 +21,94 @@ export default function Detail() {
 
     return (
         <div className = {style.divDetail}>
-            <Link to = '/home'>
-                <button className = {style.buttonHome1} id='home'>
-                    Back to home
-                </button>
-            </Link>
-            <Link to ='/dog'>
-                <button className = {style.create}>
-                    Create new Dog
-                </button>
-            </Link>
+            <div>
+                <Link to = '/home'>
+                    <button className = {style.buttonHome1} id='home'>
+                        Back to home
+                    </button>
+                </Link>
+                <Link to ='/dog'>
+                    <button className = {style.create}>
+                        Create new breed
+                    </button>
+                </Link>
+            </div>
             <div>
                 {myDog.length > 0 ? myDog.map((e) => {
-                    console.log(e);
                     return (
-                    <div>
-                    <ul className = {style.asd}>
-                    <h1 className = {style.name}>{e.name}</h1>
-                        <li>
-                            <div>
-                                <img src = {e.image} alt ={e.name} className = {style.image} />
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <h4 className = {style.caracts}>Temperaments:</h4>
-                                <ul className = {style.allTemps}>
-                                    {e.temperaments ? 
-                                        typeof e.temperaments === "object" ? 
-                                        e.temperaments.map((element) => {
-                                            if (element) {
-                                                return " " + element
-                                            }
-                                            return element.temperaments
-                                        })
-                                        : e.temperaments
-                                        : e.temperaments.map((element) => {
-                                            if (element) {
-                                                return " " + element.name
-                                            }
-                                            return element.temperaments
-                                        })
-                                    }
-                                </ul>
-                                <h4 className = {style.caracts}>Height</h4>
-                                <p>{e.heightMin} - {e.heightMax} cm</p>
-                                <h4 className = {style.caracts}>Weight</h4>
-                                <p>{e.weightMin} - {e.weightMax} kg</p>
-                                <h4 className = {style.caracts}>Life span</h4>
-                                <p className = {style.last}>{e.life_span}</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div> 
+                        <div>
+                            <ul className = {style.asd}>
+                                <h1 className = {style.name}>
+                                    {e.name}
+                                </h1>
+                                <img 
+                                    src = {e.image} 
+                                    alt ={e.name} 
+                                    className = {style.image}
+                                />
+                                <div>
+                                    <li>
+                                        <h4 className = {style.caracts}>
+                                            Temperaments: 
+                                        </h4>
+                                        <ul>
+                                            <p className = {style.p}>
+                                                {e.temperaments 
+                                                    ? typeof e.temperaments === "object" ? 
+                                                    e.temperaments.map((element) => {
+                                                        if (element) {
+                                                            return " " + element
+                                                        }
+                                                        return e.temperaments
+                                                    })
+                                                    : e.temperaments
+                                                    : e.temperaments.map((element) => {
+                                                        if (element) {
+                                                            return " " + element.name
+                                                        }
+                                                        return element.temperaments
+                                                    })
+                                                }
+                                                {console.log(myDog)}
+                                            </p>
+                                        </ul>
+                                        <h4 className = {style.caracts}>
+                                            Height 
+                                            <p className={style.p}>
+                                                {e.heightMin} - {e.heightMax} cm
+                                            </p>
+                                        </h4>
+                                        <h4 className = {style.caracts}>
+                                            Weight
+                                            <p className={style.p}>
+                                                {e.weightMin} - {e.weightMax} kg
+                                            </p>
+                                        </h4>
+                                        <h4 className = {style.caracts}>
+                                            Life span
+                                            <p className={style.p}>
+                                                {e.life_span}
+                                            </p>
+                                        </h4>
+                                    </li>
+                                </div>  
+                            </ul>
+                        </div> 
                     )}) :
-                <div className = {style.loading}>
-                    <img className = {style.dogChasingTail} src = {dogChasingTail} alt = "doggie"></img>
-                    <img className = {style.loader} src = {loader} alt = "loading"></img>
-                </div>
+                    <div className = {style.loading}>
+                        <img 
+                            className = {style.dogChasingTail} 
+                            src = {dogChasingTail} 
+                            alt = "doggie" 
+                        />
+                        <img 
+                            className = {style.loader} 
+                            src = {loader} 
+                            alt = "loading" 
+                        />
+                    </div>
                 }
             </div>
-        </div>
-    )
-}
-
-/*
-
-*/
+        </div>    
+    );
+};

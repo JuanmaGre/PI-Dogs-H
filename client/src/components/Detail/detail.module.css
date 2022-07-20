@@ -1,51 +1,53 @@
 .divDetail{
-    background-color: #f7dfb4;
-    width: 100%;
-    height: 100%;
-    position: absolute;
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 1368px;
 }
 
 .buttonHome1{
-    background-color: #b7b7a4;
+    background-color: olivedrab;
+    color: lightgoldenrodyellow;
     float: left;
-    position: relative;
+    position: inline-block;
     font-size: medium;
-    margin-left: 0px;
-    margin-top: 36px;
+    margin-left: 15px;
+    margin-top: 15px;
     height: 40px;
     border: transparent;
     border-radius: 8px;
     cursor: pointer;
 }
+
 .buttonHome1:hover{
-    background-color: cornflowerblue;
+    background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%)
 }
+
 #home{
     margin-left: 40px
 }
 
 .create{
-    background-color: #b7b7a4;
+    background-color: olivedrab;
+    color: lightgoldenrodyellow;
     float: left;
-    position: relative;
+    position: inline-block;
     font-size: medium;
-    margin-left: 5px;
-    margin-top: 36px;
+    margin-left: 15px;
+    margin-top: 15px;
     height: 40px;
     border: transparent;
     border-radius: 8px;
     cursor: pointer;
 }
+
 .create:hover{
-    background-color: cornflowerblue;
-}
-#create{
-    margin-left: 40px
+    background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%);
 }
 
-.name{
-    color: #6b705c;
-    top: 20px;
+#create{
+    margin-left: 40px
 }
 
 .asd{
@@ -58,46 +60,48 @@
     display:inline-block;
 }
 
+.name{
+    color: #6b705c;
+    margin-top: 0px;
+    align-items: center;
+    font-size: xx-large;
+}
+
 .image{
-    height: 100%;
-    max-height: 320px;
-    width: 100%;
+    display: inline;
+    max-height: 350px;
     max-width: 450px;
     box-shadow: rgb(0 0 0 / 19%) 0px 10px 20px, rgb(0 0 0 / 23%) 0px 6px 6px;
     border-radius: 8px;
 }
 
 .allTemps {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
+    display: flex;
     font-size: medium;
-}
-.allTemps li {
-    display: inline;
+    color: olivedrab;
+    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .caracts{
     color: #6b705c;
     font-size: large;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    margin-top: 30px
+    font-weight: bold;
+    margin-top: 15px
 }
 
 .p{
-    color: #6b705c;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: normal;
+    color: olivedrab;
+    font-weight: bold;
     font-size: medium;
-    padding-bottom: 10px;
-    padding-top: 0;
-    margin-top: 5px;
-}
-.last{
-    margin-bottom: 40px;
+    margin-top: 12px;
 }
 
 .loading{
-    position:absolute;
+    background-color: #f7dfb4;
+    position: absolute;
     height: 100%;
     width: 100%;
     background-position: center;
@@ -107,24 +111,20 @@
 
 .dogChasingTail {
     display: flex;
-    flex-direction: column;
     position: relative;
-    top: 70px;
-    width: 20%;
+    top: 40px;
+    width: 25%;
     left: 500px;
+    border-radius: 25px;
 }
 
 .loader {
     display: flex;
-    flex-direction: column;
     position:relative;
     top: 80px;
     height: 10%;
-    width: 20%;
+    width: 25%;
     left: 500px;
-    background:rgb(60, 175, 137);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    border-radius: 25px;
 }
 

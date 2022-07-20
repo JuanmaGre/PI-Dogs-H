@@ -16,7 +16,7 @@
 
 .createDog {
     position: absolute;
-    left: 1000px;
+    right: 150px;
     top: 25px;
     word-spacing: 5px;
 }
@@ -25,16 +25,18 @@
     font-family: monospace;
     text-decoration: none;
     color: white;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     padding: 5px;
-    background-color: olivedrab;
+    background-color: olivedrab; 
+    color: lightgoldenrodyellow;
     border-radius: 5px;
     box-shadow: 3px 3px 3px rgb(110, 178, 199);
 }
 
 .createDog:hover a {
-    background-color: lightgoldenrodyellow;
+    color: lightgoldenrodyellow;
+    background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%);
 }
 
 .divReset{
@@ -48,30 +50,21 @@
 }
 
 .buttonReset {
-    width: 120px;
-    height: 28px;
+    height: 35px;
     color: black;
-    font-weight: bold;
+    text-decoration: none;
     border: none;
     box-shadow: 3px 3px 3px rgba(150, 190, 210);
     background-color: olivedrab; 
+    color: lightgoldenrodyellow;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.buttonReset a {
-    font-family: monospace;
-    color: rgb(45, 57, 68);
-    font-size: 20px;
-    font-weight: bold;
-    padding: 5px;
-    background-color: rgba(255,0,60,1);
-    border-radius: 5px;
-    box-shadow: 3px 3px 3px rgb(110, 178, 199);
-}
-
-.buttonReset:hover a {
-    background-color: lightgoldenrodyellow;
+.buttonReset:hover {
+    color: lightgoldenrodyellow;
+    background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%);
+    border-color: black;
 }
 
 .filters {
@@ -96,10 +89,13 @@
 .selects {
     border-radius: 5px;
     border-color: rgb(166, 172, 189);
-    width: 88px;
-    background-color: rgb(100, 148, 120);
-    color: rgb(238, 255, 247);
-    font-weight: 700;
+    width: 105px;
+    margin-left: 10px;
+    background-color: olivedrab;
+    color: lightgoldenrodyellow;
+    scrollbar-base-color: transparent;
+    font-weight: medium;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .orderByWeight {
@@ -138,7 +134,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    column-gap:30px;
+    column-gap:10px;
     grid-row-gap: 50px;
     justify-content: space-evenly;
     justify-content: center;

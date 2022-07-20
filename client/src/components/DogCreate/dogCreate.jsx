@@ -100,186 +100,188 @@ export default function DogCreate() {
 
     return (
         <div className = {style.general}>
-            
-            <Link to = "/home" className = {style.backToHomeDiv}>
-                <button className = {style.backToHomeButton}> Back To Home </button>
-            </Link>
-        
         <div className = {style.transparentForm}>
-            <h1 className = {style.title}> Create your dog! </h1>
+            <h1 className = {style.title}>
+                Create your dog!
+            </h1>
             <form className = {style.form} onSubmit = {(e) => handleSubmit(e)}>
             
-            <div className = {style.nameDiv}>
-                <input
-                    className = {style.nameInput}
-                    placeholder = "NAME"
-                    type = "text"
-                    value = {input.name}
-                    name = "name"
-                    onChange = {(e) => handleChange(e)}
-                    required
-                />
-                {errors.name && (
-                    <p className = {style.error}>
-                        <strong>
-                            {errors.name}
-                        </strong>
-                    </p>
-                )}
-            </div>
-            
-            <div className = {style.heightDiv}>
-                <input
-                    className = {style.heightInput}
-                    required
-                    placeholder = "MINIMUM HEIGHT -cm- "
-                    type = "text"
-                    value = {input.heightMin}
-                    name = "heightMin"
-                    onChange = {(e) => handleChange(e)}
-                />
-                {errors.heightMin && (
-                    <p className = {style.error}>
-                        <strong>
-                            {errors.heightMin}
-                        </strong>
-                    </p>
-                )}
-            </div>
-
-            <div className = {style.heightDiv}>
-                <input
-                    className = {style.heightInput}
-                    required
-                    placeholder = "MAXIMUM HEIGHT -cm- "
-                    type = "text"
-                    value = {input.heightMax}
-                    name = "heightMax"
-                    onChange = {(e) => handleChange(e)}
-                />
-                {errors.heightMax && (
-                    <p className = {style.error}>
-                        <strong>
-                            {errors.heightMax}
-                        </strong>
-                    </p>
-                )}
-            </div>
-            
-            <div className = {style.weightDiv}>
-                <input
-                    className = {style.weightInput}
-                    required
-                    placeholder = "MINIMUM WEIGHT -kg- "
-                    type = "text"
-                    value = {input.weight}
-                    name = "weightMin"
-                    onChange = {(e) => handleChange(e)}
-                />
-                {errors.weightMin && (
-                    <p className = {style.error}>
-                        <strong>
-                            {errors.weightMin}
-                        </strong>
-                    </p>
-                )}
-            </div>
-
-            <div className = {style.weightDiv}>
-                <input
-                    className = {style.weightInput}
-                    required
-                    placeholder = "MAXIMUM WEIGHT -kg- "
-                    type = "text"
-                    value = {input.weight}
-                    name = "weightMax"
-                    onChange = {(e) => handleChange(e)}
-                />
-                {errors.weightMax && (
-                    <p className = {style.error}>
-                        <strong> 
-                            {errors.weightMax}
-                        </strong>
-                    </p>
-                )}
-            </div>
-            
-            <div className = {style.lifeSpanDiv}>
-                <input
-                    className = {style.lifeSpanInput}
-                    required
-                    placeholder = "EXPECTED LIFE SPAN -years- "
-                    type = "text"
-                    value = {input.life_span}
-                    name = "life_span"
-                    onChange = {(e) => handleChange(e)}
-                />
-                {errors.life_span && (
-                    <p className = {style.error}>
-                        <strong>
-                            {errors.life_span}
-                        </strong>
-                    </p>
-                )}
-            </div>
-
-            <div className = {style.imageDiv}>
-                <input
-                    className = {style.imageInput}
-                    type = "file"
-                    name = "image"
-                    alt = "newDoggie"
-                    accept = "image/*"
-                    multiple 
-                />
+                <div className = {style.div}>
+                    <input
+                        className = {style.input}
+                        placeholder = "NAME"
+                        type = "text"
+                        value = {input.name}
+                        name = "name"
+                        onChange = {(e) => handleChange(e)}
+                        required
+                    />
+                    {errors.name && (
+                        <p className = {style.error}>
+                            <strong>
+                                {errors.name}
+                            </strong>
+                        </p>
+                    )}
                 </div>
-            
-            <div>
-                <select 
-                    required
-                    className = {style.selectTemperaments}
-                    onChange = {(e) => handleSelectTemperaments(e)}
-                >
-                    <option value = 'selected'>
-                        All
-                    </option>
-                    {temperaments?.sort(function (a, b) {
-                        if (a.name < b.name) return -1;
-                        if (a.name > b.name) return 1;
-                        return 0;
-                    }).map (temperament => {
-                        return (
-                        <option value = {temperament.name} key = {temperament.id}>
-                            {temperament.name}
-                        </option>
-                    )
-                    })}
-
-                </select>
-                {input.temperaments.map(el => {
-                    return (
-                        <ul className = {style.allTemps} key = {el}>
-                            <li>
-                                <p className = {style.temp}>
-                                    <strong>
-                                        {el}
-                                    </strong>
-                                </p>
-                                    <button onClick={() => handleDeleteTemperaments(el)} className='x' >X</button>
-                            </li>
-                        </ul>
-                    )
-                })}
-            </div>
-
-            <label className = {style.labelTemperaments}>
-                TEMPERAMENTS:
-            </label>
                 
-            <button className = {style.buttonDone} type = "submit">
-                DONE
-            </button>
+                <div className = {style.div}>
+                    <input
+                        className = {style.input}
+                        required
+                        placeholder = "MINIMUM HEIGHT -cm- "
+                        type = "text"
+                        value = {input.heightMin}
+                        name = "heightMin"
+                        onChange = {(e) => handleChange(e)}
+                    />
+                    {errors.heightMin && (
+                        <p className = {style.error}>
+                            <strong>
+                                {errors.heightMin}
+                            </strong>
+                        </p>
+                    )}
+                </div>
 
+                <div className = {style.div}>
+                    <input
+                        className = {style.input}
+                        required
+                        placeholder = "MAXIMUM HEIGHT -cm- "
+                        type = "text"
+                        value = {input.heightMax}
+                        name = "heightMax"
+                        onChange = {(e) => handleChange(e)}
+                    />
+                    {errors.heightMax && (
+                        <p className = {style.error}>
+                            <strong>
+                                {errors.heightMax}
+                            </strong>
+                        </p>
+                    )}
+                </div>
+                
+                <div className = {style.div}>
+                    <input
+                        className = {style.input}
+                        required
+                        placeholder = "MINIMUM WEIGHT -kg- "
+                        type = "text"
+                        value = {input.weight}
+                        name = "weightMin"
+                        onChange = {(e) => handleChange(e)}
+                    />
+                    {errors.weightMin && (
+                        <p className = {style.error}>
+                            <strong>
+                                {errors.weightMin}
+                            </strong>
+                        </p>
+                    )}
+                </div>
+
+                <div className = {style.div}>
+                    <input
+                        className = {style.input}
+                        required
+                        placeholder = "MAXIMUM WEIGHT -kg- "
+                        type = "text"
+                        value = {input.weight}
+                        name = "weightMax"
+                        onChange = {(e) => handleChange(e)}
+                    />
+                    {errors.weightMax && (
+                        <p className = {style.error}>
+                            <strong> 
+                                {errors.weightMax}
+                            </strong>
+                        </p>
+                    )}
+                </div>
+                
+                <div className = {style.div}>
+                    <input
+                        className = {style.input}
+                        required
+                        placeholder = "EXPECTED LIFE SPAN -years- "
+                        type = "text"
+                        value = {input.life_span}
+                        name = "life_span"
+                        onChange = {(e) => handleChange(e)}
+                    />
+                    {errors.life_span && (
+                        <p className = {style.error}>
+                            <strong>
+                                {errors.life_span}
+                            </strong>
+                        </p>
+                    )}
+                </div>
+
+                <div className = {style.divImage}>
+                    <input
+                        className = {style.input}
+                        placeholder = "ENTER A HTTP SOURCE FOR IMAGE"
+                        type = "text"
+                        name = "image"
+                        value = {input.image}
+                        onChange = {(e) => handleChange(e)}
+                        required
+                    />
+                </div>
+                
+                <div className={style.divTemps}>
+                    <label className = {style.labelTemperaments}>
+                        TEMPERAMENTS:
+                    </label>
+                    <select 
+                        required
+                        className = {style.selectTemperaments}
+                        onChange = {(e) => handleSelectTemperaments(e)}
+                    >
+                        <option value = 'selected'>
+                            All
+                        </option>
+                        {temperaments?.sort(function (a, b) {
+                            if (a.name < b.name) return -1;
+                            if (a.name > b.name) return 1;
+                            return 0;
+                        }).map (temperament => {
+                            return (
+                                <option value = {temperament.name} key = {temperament.id}>
+                                    {temperament.name}
+                                </option>
+                            )
+                        })}
+                    </select>
+                    {input.temperaments.map(el => {
+                        return (
+                            <ul className = {style.allTemps} key = {el}>
+                                <li>
+                                    <p>
+                                        <strong className = {style.temp}>
+                                            {el}
+                                        </strong>
+                                        <button 
+                                            onClick={() => handleDeleteTemperaments(el)} 
+                                            className = {style.x}
+                                        >
+                                            X
+                                        </button>
+                                    </p>
+                                </li>
+                            </ul>
+                        )
+                    })}
+                </div>
+                <Link to = "/home" className = {style.backToHomeDiv}>
+                    <button className = {style.backToHomeButton}> Back To Home </button>
+                </Link>
+                <button className = {style.buttonDone} type = "submit">
+                    DONE
+                </button>
             </form>
         </div>
     </div>

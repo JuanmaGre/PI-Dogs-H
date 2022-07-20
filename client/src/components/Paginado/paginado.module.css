@@ -3,6 +3,7 @@
     flex-direction: row;
     padding: 0;
     margin: 0;
+    align-content: center;
     font-size: medium;
 }
 
@@ -11,47 +12,45 @@
 }
 
 .paginado li button {
-    float: left;
-    padding: 8px 18px;
+    float: center;
+    padding: 8px 10px;
     border-radius: 8px;
-    background-color: #ddbea9;
+    background-color: olivedrab;
     border: transparent;
     margin: 3px;
 }
 
 .paginado li button:hover{
-    background-color: #cb997e;
-    transform: translate3d(0.1ch, 0.1in, 7em);
+    background-color: lightgoldenrodyellow;
+    transform: translate3d(0.1ch, 0.1in, 4em);
     cursor: pointer;
     color: black;
 }
 
 .paginado li button:active{
-    background-color: #cb997e;
-    box-shadow: 0 1px #666;
+    background-color: lightgoldenrodyellow;
+    box-shadow: 0 4px olivedrab;
     transform: translateY(1px);
 }
 
 .paginado li button:focus{
-    background-color: #cb997e;
+    background-color: lightgoldenrodyellow;
+    color: olivedrab;
 }
 
 .numbers { 
     position: relative;
-    background-color: rgb(0, 0, 0);
-    color: brown;
+    color: lightgoldenrodyellow;
     width: 35px;
     height: 35px;
     padding: 8px;
     margin: 4px;
-    top: -5px;
-    right: 5px;
     border-style:solid;
-    border-color:brown;
+    border-color: lightgoldenrodyellow;
     border-radius: 5px;   
 }
 
 .numbers:focus {
     background-color: rgba(63, 63, 63, 0.233);
-    color: burlywood;
+    color: olivedrab;
 }
