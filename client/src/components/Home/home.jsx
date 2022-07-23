@@ -135,10 +135,10 @@ export default function Home() {
                         </option>
                     </select>
                 
-                <div className = {style.paginado}>
-                <Paginado dogsXPage = {dogsXPage} allDogs = {allDogs.length} paginado = {paginado} />
+                    <div className = {style.paginado}>
+                    <Paginado dogsXPage = {dogsXPage} allDogs = {allDogs.length} paginado = {paginado} />
+                    </div>
                 </div>
-            </div>
 
                 <div className = {style.parent}>
                         {currentDogs?.map((e) => {
@@ -159,7 +159,7 @@ export default function Home() {
                         })
                     }
                 </div>
-                </div>
+            </div>
         </div>
     );
 };

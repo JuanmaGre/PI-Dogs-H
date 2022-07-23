@@ -33,16 +33,17 @@
     font-family: monospace;
     font-weight: 700;
     text-decoration-line: none;
-    background-color: rgb(90, 172, 103);
-    color: rgb(255, 235, 235);
+    background-color: olivedrab;
+    color: lightgoldenrodyellow;
     border-color: transparent;
     transition: 0.3s;
     border-radius: 4px;
 }
 
 .buttonStart:hover {
-    background-color: rgb(88, 153, 179);
     box-shadow: 0 0 3px rgb(88, 153, 179), 0 0 6px rgb(88, 153, 179),
     0 0 15px rgb(88, 153, 179), 0 0 30px rgb(88, 153, 179);;
     cursor: pointer;
+    color: lightgoldenrodyellow;
+    background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%); 
 }
