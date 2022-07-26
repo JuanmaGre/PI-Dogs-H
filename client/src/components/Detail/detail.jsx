@@ -18,6 +18,7 @@ export default function Detail() {
         dispatch(getDetail(params.id));
     }, [dispatch, params.id]);
 
+    window.scrollTo(0, 0);
 
     return (
         <div className = {style.divDetail}>
@@ -49,7 +50,7 @@ export default function Detail() {
                                 <div>
                                     <li>
                                         <h4 className = {style.caracts}>
-                                            Temperaments: 
+                                            Temperaments 
                                         </h4>
                                         <ul>
                                             <p className = {style.p}>

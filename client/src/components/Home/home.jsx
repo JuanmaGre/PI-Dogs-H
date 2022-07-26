@@ -78,9 +78,9 @@ export default function Home() {
             <nav className = {style.nav} />
             <SearchBar />
             <div className = {style.divReset}>
-                    <button className = {style.buttonReset} onClick = {e => handleResetsFilters(e)}>
-                        Reset Search
-                    </button>
+                <button className = {style.buttonReset} onClick = {e => handleResetsFilters(e)}>
+                    Reset Search
+                </button>
             </div>
             <div className = {style.createDog}>
                 <Link to = "/dog" key = 'create' > Create Breed </Link>

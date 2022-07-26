@@ -3,22 +3,23 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-size:auto;
+    background-size: auto;
     background-repeat: no-repeat;
     background-position: center;
     overflow-x: hidden;
+    max-width: 120em;
 }
 
 .nav {
     background: linear-gradient(-180deg, rgb(0, 0, 0) 0%, rgb(254, 253, 226) 50%, rgba(0, 0, 0) 100%);
-    margin-bottom: 10px;
-    height: 110px;
+    margin-bottom: 0.5em;
+    height: 7em;
 }
 
 .createDog {
     position: absolute;
-    right: 150px;
-    top: 25px;
+    right: 9.4em;
+    top: 1.5em;
     word-spacing: 5px;
 }
 
@@ -26,13 +27,13 @@
     font-family: monospace;
     text-decoration: none;
     color: white;
-    font-size: 22px;
+    font-size: 1.4em;
     font-weight: bold;
-    padding: 5px;
+    padding: 0.3em;
     background-color: olivedrab; 
     color: lightgoldenrodyellow;
-    border-radius: 5px;
-    box-shadow: 3px 3px 3px rgb(110, 178, 199);
+    border-radius: 0.3em;
+    box-shadow: 0.2em 0.2em 0.2em rgb(110, 178, 199);
 }
 
 .createDog:hover a {
@@ -44,21 +45,21 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    width: 100px;
-    top: 0px;
-    left: 620px;
+    width: 6.25em;
+    top: 0em;
+    left: 38.75em;
     justify-content: center;
 }
 
 .buttonReset {
-    height: 35px;
+    height: 2.20em;
     color: black;
     text-decoration: none;
     border: none;
-    box-shadow: 3px 3px 3px rgba(150, 190, 210);
+    box-shadow: 0.2em 0.2em 0.2em rgba(150, 190, 210);
     background-color: olivedrab; 
     color: lightgoldenrodyellow;
-    border-radius: 5px;
+    border-radius: 0.3em;
     cursor: pointer;
 }
 
@@ -76,22 +77,22 @@
 
 .alphabeticalOrder {
     position: relative;
-    top: 20px;
-    margin-right: 4px;
-    right: 5px;
+    top: 1.25em;
+    margin-right: 0.25em;
+    right: 0.3em;
 }
 
 .labels {
     color: rgb(254, 253, 226);
     font-weight: bold;
-    margin-left: 5px;
+    margin-left: 0.3em;
 }
 
 .selects {
-    border-radius: 5px;
+    border-radius: 0.3em;
     border-color: rgb(166, 172, 189);
-    width: 105px;
-    margin-left: 10px;
+    width: 6.55em;
+    margin-left: 0.6em;
     background-color: olivedrab;
     color: lightgoldenrodyellow;
     scrollbar-base-color: transparent;
@@ -101,72 +102,72 @@
 
 .orderByWeight {
     position: relative;
-    top: 25px;
-    margin-right: 4px;
-    right: 8px;
+    top: 1.55em;
+    margin-right: 0.25em;
+    right: 0.5em;
 }
 
 .filterByTemperaments {
     position: relative;
-    top: 30px;
-    margin-right: 4px;
-    right: 16px;
+    top: 1.88em;
+    margin-right: 0.25em;
+    right: 1em;
 }
 
 .filterByBreeds {
     position: relative;
-    top: 35px;
-    right: 5px;
+    top: 2.20em;
+    right: 0.3em;
 }
 
 .dogChasingTailGif {
     position: relative;
-    top: 80px;
-    left: 0px;
+    top: 5em;
+    left: 0em;
 }
 
 .loaderGif {
     position: relative;
-    top: -50px;
-    left: 0px;
+    top: -3.10em;
+    left: 0em;
 }
 
 .parent {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    column-gap:10px;
-    grid-row-gap: 50px;
+    column-gap:0.6em;
+    grid-row-gap: 3.10em;
     justify-content: space-evenly;
     justify-content: center;
     align-content: space-evenly;
     align-items: center;
-    margin-left: 100px;
-    margin-top: 100px;
+    margin-left: 6.25em;
+    margin-top: 6.25em;
 }
 
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0.6em;
     background: rgb(254, 253, 236);
     overflow-y: visible;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
+    border-radius: 0.3em;
     background-color: rgba(107, 142, 35, 0.5);
 }
 
 .sadDogGif {
     position: relative;
     display: flex;
-    left: 80px;
-    top: 100px;
+    left: 5em;
+    top: 6.25em;
 }
 
 .paginado{
     position: relative;
     display: flex;
-    top: 40px;
-    left: 240px;
+    top: 2.5em;
+    left: 15em;
 }
