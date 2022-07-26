@@ -22,7 +22,7 @@
 
 .paginado li button:hover{
     background-color: lightgoldenrodyellow;
-    transform: translate3d(0.1ch, 0.1in, 4em);
+    transform: translate3d(0.1ch, 0.1in, 2em);
     cursor: pointer;
     color: black;
 }
@@ -53,4 +53,53 @@
 .numbers:focus {
     background-color: rgba(63, 63, 63, 0.233);
     color: olivedrab;
+}
+
+@media (max-width: 992px) {
+    .paginado {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-left: -9em;
+        font-size: small;
+    }
+    .paginado li button {
+        padding: 0.5em 0.3em;
+    }
+    .numbers {
+        height: 2em;
+        width: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .paginado {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .paginado li button {
+        padding: 0.5em 0.3em;
+    }
+    .numbers {
+        height: 2em;
+        width: 1.6em;
+    }
+}
+
+@media (max-width: 576px) {
+    .paginado {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-left: -19em;
+        font-size: xx-small;
+    }
+    .paginado li button {
+        padding: 0em;
+    }
+    .numbers {
+        height: 2em;
+        width: 1.2em;
+    }
 }

@@ -13,7 +13,7 @@
 .nav {
     background: linear-gradient(-180deg, rgb(0, 0, 0) 0%, rgb(254, 253, 226) 50%, rgba(0, 0, 0) 100%);
     margin-bottom: 0.5em;
-    height: 7em;
+    height: 6em;
 }
 
 .createDog {
@@ -45,13 +45,13 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    width: 6.25em;
-    top: 0em;
-    left: 38.75em;
     justify-content: center;
 }
 
 .buttonReset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 2.20em;
     color: black;
     text-decoration: none;
@@ -170,4 +170,63 @@
     display: flex;
     top: 2.5em;
     left: 15em;
+}
+
+@media (max-width: 1200px) {
+    body {
+        font-size: 12px;
+    }
+    .home {
+        max-width: 1200px;
+    }
+    .buttonReset {
+        font-size: 1.2em;
+    }
+    .nav {
+        height: 7em;
+    }
+    .createDog {
+        margin-top: -0.1em;
+        font-size: large;
+        margin-right: -6em;
+    }
+}
+
+@media (max-width: 992px) {
+    .parent {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        column-gap:0.4em;
+        grid-row-gap: 2.10em;
+    }
+}
+
+@media (max-width: 768px) {
+    .parent {
+        display: grid;
+        column-gap:0.4em;
+        grid-row-gap: 2.10em;
+        margin-left: 2em;
+        margin-top: 6.25em;
+    }
+}
+
+@media (max-width: 576px) {
+    .createDog {
+        display: flex;
+        flex-direction: column;
+        margin-top: -0.2em;
+        font-size: medium;
+        margin-right: -9.2em;
+        word-spacing: 1px;
+    }
+    .parent {
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: 2em;
+        justify-content: center;
+        align-items: center;
+        margin-top: 6.25em;
+    }
 }

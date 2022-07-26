@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     max-width: 1368px;
-    background: linear-gradient(90deg, rgb(254, 253, 226) 0%, rgb(0, 0, 0) 50%, rgb(254, 253, 226) 100%)
+    background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(254, 253, 226) 45%, rgb(254, 253, 226) 55%, rgb(0, 0, 0) 100%)
 }
 
 .buttonHome1{
@@ -68,7 +68,7 @@
     font-size: xx-large;
     cursor: default;
     letter-spacing: 2px;
-    text-shadow: 0.5px 0.5px #ffffff;
+    text-shadow: 2px 2px black;
 }
 
 .image{
@@ -90,6 +90,7 @@
     color: #6b705c;
     font-size: x-large;
     font-weight: bold;
+    text-shadow: 1px 1px black;
     margin-top: 15px;
     cursor: default;
 }
@@ -99,11 +100,12 @@
     color: olivedrab;
     font-weight: bold;
     font-size: large;
+    text-shadow: 1px 1px 1px black;
     margin-top: 1em;
 }
 
 .loading{
-    background: linear-gradient(90deg, rgb(254, 253, 226) 0%, rgb(0, 0, 0) 50%, rgb(254, 253, 226) 100%);
+    background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(254, 253, 226) 45%, rgb(254, 253, 226) 55%, rgb(0, 0, 0) 100%);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -131,3 +133,11 @@
     border-radius: 25px;
 }
 
+@media (max-width: 576px) {
+    .image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 300px;
+    }
+}

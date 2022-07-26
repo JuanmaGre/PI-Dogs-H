@@ -34,3 +34,26 @@
     color: lightgoldenrodyellow;
     background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%);
 }
+
+@media (max-width: 992px) {
+    .generalSearch {
+        position: absolute;
+        margin-left: -8em;
+    }
+}
+
+@media (max-width: 576px) {
+    .searchInput {
+        margin-left: -1em;
+        margin-top: 1px;
+        font-size: 1.6em;
+        width: 7.5em;
+        height: 1.5em; 
+    }
+    .buttonSearch {
+        position: absolute;
+        margin-left: 9.5em;
+        font-size: small;
+        height: 2.5em;
+    }
+}

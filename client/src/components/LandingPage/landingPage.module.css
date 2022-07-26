@@ -7,27 +7,21 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: default;
 }
 
 .image{
+    position: relative;
     width: 90%;
     height: 80%;
     padding-left: 0px;
-}
-
-.image2{
-    position: relative;
-    width: 3.5%;
-    height: 5%;
-    padding-left: 170px;
-    top: 46px;
+    cursor: default;
 }
 
 .buttonStart {
-    position: absolute;
-    top: 550px;
-    left: 540px;
-    width: 200px;
+    position: relative;
+    justify-content: center;
+    width: 10em;
     letter-spacing: 2px;
     font-size: 22px;
     font-family: monospace;
@@ -46,4 +40,14 @@
     cursor: pointer;
     color: lightgoldenrodyellow;
     background: linear-gradient(90deg, rgb(122, 122, 150) 0%, rgb(25, 29, 29) 50%, rgb(122, 122, 150) 100%); 
+}
+
+@media (max-width: 576px) {
+    .image {
+        height: 60%;
+        background-size: auto;
+    }
+    .buttonStart {
+        bottom: -5em;
+    }
 }
