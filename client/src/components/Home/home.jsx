@@ -114,7 +114,7 @@ export default function Home() {
                         <option value = "All"> All </option>
                         {temperaments.map((temperament) => (
                             <option key = {temperament.id} required value = {temperament.name}>
-                                {temperament.name} 
+                                {temperament.name}
                             </option>
                         ))}
                     </select>

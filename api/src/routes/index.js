@@ -110,12 +110,16 @@ router.post('/dogs', async (req, res) => {
         life_span: life_span + ' years',
         image,
     });
-    let temperamentDB = await Temperament.findAll({
-        where: {
-            name: temperaments,
-        }
-    });
-    dogCreated.addTemperament(temperamentDB);
+    if(temperaments) {
+        temperaments.forEach(async e => {
+            const temperamentsDB = await Temperament.findOne({
+                where: {
+                    name: e
+                }
+            })
+            await dogCreated.addTemperament(temperamentsDB);
+        });
+    }
     res.status(200).send('🐕 Dog successfully created 🐶')
 });
 

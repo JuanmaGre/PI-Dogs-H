@@ -1,15 +1,16 @@
 .home {
-    background: linear-gradient(-180deg, rgba(146, 207, 187) 0%, rgb(122, 122, 150) 50%, rgba(146, 207, 187) 100%);
+    background: linear-gradient(90deg, rgb(254, 253, 226) 0%, rgb(0, 0, 0) 50%, rgb(254, 253, 226) 100%);
     position: relative;
     display: flex;
     flex-direction: column;
     background-size:auto;
     background-repeat: no-repeat;
     background-position: center;
+    overflow-x: hidden;
 }
 
 .nav {
-    background: linear-gradient(-180deg, rgb(122, 122, 150) 0%, rgb(146, 207, 187) 50%, rgba(122, 122, 150) 100%);
+    background: linear-gradient(-180deg, rgb(0, 0, 0) 0%, rgb(254, 253, 226) 50%, rgba(0, 0, 0) 100%);
     margin-bottom: 10px;
     height: 110px;
 }
@@ -81,7 +82,7 @@
 }
 
 .labels {
-    color: rgb(38, 19, 68);
+    color: rgb(254, 253, 226);
     font-weight: bold;
     margin-left: 5px;
 }
@@ -147,12 +148,13 @@
 
 ::-webkit-scrollbar {
     width: 10px;
-    background: rgb(20, 0, 32) ;
+    background: rgb(254, 253, 236);
+    overflow-y: visible;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: rgba(91, 151, 86, 0.2);
+    background-color: rgba(107, 142, 35, 0.5);
 }
 
 .sadDogGif {
