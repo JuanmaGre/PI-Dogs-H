@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./landingPage.module.css";
 import doggies from "../images/doggies.png";
-import logoH from "../images/logoH.png";
 
 
 

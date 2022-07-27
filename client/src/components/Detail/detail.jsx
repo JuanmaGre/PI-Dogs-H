@@ -11,7 +11,6 @@ import loader from "../images/Loader.gif";
 export default function Detail() {
     const dispatch = useDispatch();
     const params = useParams();
-
     const myDog = useSelector((state) => state.detail);
 
     useEffect(() => {

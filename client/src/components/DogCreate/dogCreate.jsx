@@ -102,14 +102,14 @@ export default function DogCreate() {
         <div className = {style.general}>
         <div className = {style.transparentForm}>
             <h1 className = {style.title}>
-                Create your dog!
+                Create Your Own Breed!
             </h1>
             <form className = {style.form} onSubmit = {(e) => handleSubmit(e)}>
             
                 <div className = {style.div}>
                     <input
                         className = {style.input}
-                        placeholder = "NAME"
+                        placeholder = "BREED'S NAME"
                         type = "text"
                         value = {input.name}
                         name = "name"
@@ -223,7 +223,7 @@ export default function DogCreate() {
                 <div className = {style.divImage}>
                     <input
                         className = {style.input}
-                        placeholder = "ENTER A HTTP SOURCE FOR IMAGE"
+                        placeholder = "ENTER A VALID HTTP SOURCE FOR IMAGE"
                         type = "text"
                         name = "image"
                         value = {input.image}
@@ -276,8 +276,10 @@ export default function DogCreate() {
                         )
                     })}
                 </div>
-                <Link to = "/home" className = {style.backToHomeDiv}>
-                    <button className = {style.backToHomeButton}> Back To Home </button>
+                <Link to = "/home">
+                    <button className = {style.backToHomeButton}>
+                        Back To Home 
+                    </button>
                 </Link>
                 <button className = {style.buttonDone} type = "submit">
                     DONE
