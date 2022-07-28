@@ -6,6 +6,57 @@
     width: 1366px;
 }
 
+@media (max-width: 1200px) {
+    .transparentForm {
+        max-width: 1200px;
+        max-height: 850px;
+        margin-top: 0.2em;
+        margin-left: -10em;
+    }
+    .backToHomeButton {
+        margin-left: 0.4em;
+        margin-bottom: -0.5em;
+    }
+    .buttonDone {
+        margin-bottom: -0.5em;
+        justify-content: center;
+        margin-right: 0.8em;
+    }
+    .labelTemperaments {
+        margin-top: 0.3em;
+        margin-left: 0em;
+    }
+    .selectTemperaments {
+        left: 18em;
+        top: 21.2em;
+        max-width: 12em;
+    }
+}
+
+@media (max-width: 992px) {
+    .transparentForm {
+        max-width: 992px;
+        max-height: 650px;
+        margin-top: 0.2em;
+        margin-left: -20em;
+    }
+}
+
+@media (max-width: 768px) {
+    .transparentForm {
+        max-width: 580px;
+        max-height: 650px;
+        margin-top: -0.5em;
+        margin-left: -29em;
+    }
+    .labelTemperaments {
+        margin-left: -1em;
+    }
+    .selectTemperaments {
+        left: 17em;
+    }
+}
+
 @media (max-width: 576px) {
     .general {
         background: linear-gradient(90deg, rgb(254, 253, 226) 0%, rgb(0, 0, 0) 50%, rgb(254, 253, 226) 100%);
